@@ -9,8 +9,8 @@ const Main: React.FC = () => {
   return (
     <div>
       <Routes>
-        <Route exact path="/" element={<Gameboards />} />
-        <Route exact path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/" element={<Gameboards />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </div>
   );
