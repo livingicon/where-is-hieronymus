@@ -32,7 +32,7 @@ const NavWrapper = styled.nav`
     background-color: #f0f0f0;
   }
 
-  h2 {
+  h1 {
     font-size: 1.2rem;
     margin: 0;
   }
@@ -54,7 +54,7 @@ const NavWrapper = styled.nav`
   }
 
   a:hover {
-    text-decoration: underline;
+    transform: scale(1.1);
   }
 `
 
