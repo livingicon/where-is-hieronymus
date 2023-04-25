@@ -30,6 +30,7 @@ const NavWrapper = styled.nav`
     align-items: center;
     padding: 10px;
     background-color: #f0f0f0;
+    margin: 0;
   }
 
   h1 {
