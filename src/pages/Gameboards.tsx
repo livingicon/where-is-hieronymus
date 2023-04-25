@@ -11,6 +11,7 @@ const Gameboards: React.FC = () => {
     <GameboardsContainer>
       <p>Click a Hieronymus Bosch painting to play.</p>
       <GameboardImages>
+        {/* Must turn each below into a Link */}
         <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
         <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
         <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
