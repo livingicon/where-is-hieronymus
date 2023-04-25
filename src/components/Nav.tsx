@@ -9,7 +9,10 @@ const Nav: React.FC = () => {
   return (
     <NavWrapper>
       <nav>
-        <h1 id="appName">Where's Hieronymus?</h1>
+        <div>
+          <img src={require("../images/hieronymus-bosch-portrait.jpg")} alt="Portrait of Hieronymus Bosch" />
+          <h1 id="appName">Where's Hieronymus?</h1>
+        </div>
         <ul className="nav-links">
           <Link className="nav-link" to='/'>
             <li>Gameboards</li>
@@ -23,13 +26,25 @@ const Nav: React.FC = () => {
   )
 }
 
-const NavWrapper = styled.nav`
+const NavWrapper = styled.div`
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: #f0f0f0;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    height: 25px;
+    border: 3px solid black;
+    border-radius: 50%;
   }
 
   h1 {

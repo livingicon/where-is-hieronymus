@@ -9,7 +9,7 @@ const Gameboards: React.FC = () => {
 
   return (
     <GameboardsContainer>
-      <p>Click one of these paintings to find Hieronymus</p>
+      <p>Click a Hieronymus Bosch painting to play.</p>
       <GameboardImages>
         <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
         <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
@@ -27,13 +27,13 @@ const GameboardImages = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px; // not the best solution
 `;
 
 const Image = styled.img`
-  width: 190px;
+  width: 145px;
   height: 200px;
   object-fit: cover;
+  margin: 20px;
   &:hover {
     transform: scale(1.1);
 `;
