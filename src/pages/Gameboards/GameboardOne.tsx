@@ -9,7 +9,6 @@ const GameboardOne: React.FC = () => {
 
   return (
     <GameboardOneContainer>
-      <p>Click a Hieronymus Bosch painting to play.</p>
       <img src={require('../../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
     </GameboardOneContainer>
   );

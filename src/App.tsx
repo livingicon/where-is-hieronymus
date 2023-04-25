@@ -26,7 +26,6 @@ const App: React.FC = () => {
           <div>
             <Nav />
             <Main />
-            {/* <Footer /> */}
           </div>
         </Router>
     </>

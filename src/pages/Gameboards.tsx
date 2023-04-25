@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 // import { Routes, Route } from "react-router-dom";
 // import Leaderboard from "./Leaderboard";
 
@@ -12,7 +13,9 @@ const Gameboards: React.FC = () => {
       <p>Click a Hieronymus Bosch painting to play.</p>
       <GameboardImages>
         {/* Must turn each below into a Link */}
-        <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
+        <Link to="/the-temptation-of-saint-anthony">
+          <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
+        </Link>
         <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
         <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
       </GameboardImages>
