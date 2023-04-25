@@ -24,6 +24,7 @@
 <ul dir="auto">
   <li><a href="https://reactjs.org/" rel="nofollow">React</a></li>
   <li><a href="https://reactrouter.com/" rel="nofollow">React Router</a></li>
+  <li><a href="https://styled-components.com/docs" rel="nofollow">Styled-Components</a></li>
   <li><a href="https://www.typescriptlang.org/docs/" rel="nofollow">TypeScript</a></li>
   <li><a href="https://firebase.google.com/docs" rel="nofollow">Firebase</a></li>
 </ul>
