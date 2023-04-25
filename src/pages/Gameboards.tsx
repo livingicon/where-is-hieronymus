@@ -9,14 +9,21 @@ const Gameboards: React.FC = () => {
 
   return (
     <GameboardsContainer>
-      <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
-      <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
-      <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
+      <p>Click one of these paintings to find Hieronymus</p>
+      <GameboardImages>
+        <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
+        <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
+        <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
+      </GameboardImages>
     </GameboardsContainer>
   );
 };
 
 const GameboardsContainer = styled.div`
+  display: grid;
+  text-align: center;
+`
+const GameboardImages = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
