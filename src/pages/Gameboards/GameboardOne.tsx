@@ -2,8 +2,6 @@
 
 import React from "react";
 import styled from 'styled-components';
-// import { Routes, Route } from "react-router-dom";
-// import Leaderboard from "./Leaderboard";
 
 const GameboardOne: React.FC = () => {
 

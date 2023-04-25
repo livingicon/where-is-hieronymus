@@ -16,8 +16,12 @@ const Gameboards: React.FC = () => {
         <Link to="/the-temptation-of-saint-anthony">
           <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
         </Link>
-        <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
-        <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
+        <Link to="/the-garden-of-earthly-delights">
+          <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
+        </Link>
+        <Link to="/the-last-judgement">
+          <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
+        </Link>
       </GameboardImages>
     </GameboardsContainer>
   );
