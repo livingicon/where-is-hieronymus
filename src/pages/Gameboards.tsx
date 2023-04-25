@@ -10,7 +10,7 @@ const Gameboards: React.FC = () => {
 
   return (
     <GameboardsContainer>
-      <p>Click a Hieronymus Bosch painting to play.</p>
+      <p>Click a Hieronymus Bosch painting to go to it's gameboard.</p>
       <GameboardImages>
         {/* Must turn each below into a Link */}
         <Link to="/the-temptation-of-saint-anthony">
@@ -30,6 +30,7 @@ const Gameboards: React.FC = () => {
 const GameboardsContainer = styled.div`
   display: grid;
   text-align: center;
+  color: #333;
 `
 const GameboardImages = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ const Image = styled.img`
   height: 200px;
   object-fit: cover;
   margin: 20px;
+  box-shadow: 5px 5px 15px #333;
   &:hover {
     transform: scale(1.1);
 `;
