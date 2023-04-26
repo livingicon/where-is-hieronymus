@@ -39,12 +39,32 @@ const GameboardOne: React.FC = () => {
 };
 
 const GameboardOneContainer = styled.div`
-
-`
+  position: relative;
+`;
 
 const ModalWrapper = styled.div`
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
 
-`
+  section {
+    border-radius: 10px;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 const ZoomImage = styled.img<{ zoomed: boolean }>`
   max-width: 100%;
@@ -55,3 +75,22 @@ const ZoomImage = styled.img<{ zoomed: boolean }>`
 `;
 
 export { GameboardOne, ZoomImage };
+
+// #cart {
+//   position: fixed;
+//   overflow: auto;
+//   z-index: 6;
+//   width: 50%;
+//   height: 50%;
+//   top: 10%;
+//   left: 25%;
+//   border-radius: 10px;
+//   background-color: white;
+//   font-weight: bold;
+//   color: black;
+//   padding: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
