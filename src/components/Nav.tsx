@@ -43,8 +43,9 @@ const NavWrapper = styled.div`
 
   img {
     height: 25px;
-    border: 3px solid black;
-    border-radius: 50%;
+    border: 2px solid black;
+    border-radius: 10%;
+    margin: 0 3px;
   }
 
   h1 {
