@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ZoomImage } from "./GameboardOne";
 
 const GameboardTwo: React.FC = () => {
-  const [zoomed, setZoomed] = useState(false);
+  const [zoomed, setZoomed] = useState<boolean>(false);
 
   const handleImageClick = () => {
     setZoomed(!zoomed);
