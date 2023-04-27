@@ -4,12 +4,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
+// { startTimer, isVisible, closeModal, handleImageClick } // add below and move functions out
 const GameboardOne: React.FC = () => {
   const [zoomed, setZoomed] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   const closeModal = (): void => isVisible ? setIsVisible(false) : setIsVisible(true);
   
+  const startTimer = () => console.log("working");
+
   const handleImageClick = () => {
     setZoomed(!zoomed);
   };
@@ -25,19 +28,25 @@ const GameboardOne: React.FC = () => {
               showing the available characters and you will click on the one you have found.
               When you are ready, you may click the start button and the timer will begin.
               The timer will end when you have found all three characters.</p>
-            <button onClick={closeModal}>Start</button>
+            <button onClick={() => {closeModal(); startTimer();}}>Start</button>
             <Link to="/">
               <button>Cancel</button>
             </Link>
           </section>
         </ModalWrapper>
       }
-      <ZoomImage 
-        src={require('../../images/temptation_of_saint_anthony.jpg')} 
-        alt="The Temptation of Saint Anthony Painting" 
-        zoomed={zoomed}
-        onClick={handleImageClick}
-      />
+      <TemptationGameboardWrapper>
+        {/* <GameTimer
+        // add timer
+        /> */}
+        <ZoomImage 
+          src={require('../../images/temptation_of_saint_anthony.jpg')} 
+          alt="The Temptation of Saint Anthony Painting" 
+          zoomed={zoomed}
+          onClick={handleImageClick}
+        />
+      </TemptationGameboardWrapper>
+
     </GameboardOneContainer>
   );
 };
@@ -78,6 +87,10 @@ const ModalWrapper = styled.div`
   button {
     width: 100px;
   }
+`;
+
+const TemptationGameboardWrapper = styled.div`
+  display: grid;
 `;
 
 const ZoomImage = styled.img<{ zoomed: boolean }>`
