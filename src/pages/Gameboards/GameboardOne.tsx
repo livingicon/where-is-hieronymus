@@ -3,6 +3,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import Temptation from '../../images/temptation_of_saint_anthony.jpg';
+import Alice from "../../images/TemptAlice.png";
+import TinBird from "../../images/TemptTinBird.png";
+import Frank from "../../images/TemptFrank.png";
 
 // { startTimer, isVisible, closeModal, handleImageClick } // add below and move functions out
 const GameboardOne: React.FC = () => {
@@ -36,11 +40,20 @@ const GameboardOne: React.FC = () => {
         </ModalWrapper>
       }
       <TemptationGameboardWrapper>
+        <h1>Timer</h1>
+        <div>
+          <h1>Find</h1>
+          <KeyWrapper>
+            <img src={Alice} alt="Dark skinned woman" />
+            <img src={TinBird} alt="Bird in knight's helmet" />
+            <img src={Frank} alt="Hidden hooded figure" />
+          </KeyWrapper>
+        </div>
         {/* <GameTimer
         // add timer
         /> */}
         <ZoomImage 
-          src={require('../../images/temptation_of_saint_anthony.jpg')} 
+          src={Temptation} 
           alt="The Temptation of Saint Anthony Painting" 
           zoomed={zoomed}
           onClick={handleImageClick}
@@ -93,6 +106,11 @@ const TemptationGameboardWrapper = styled.div`
   display: grid;
 `;
 
+const KeyWrapper = styled.div`
+
+`;
+
+// change so that you can zoom all the way in and click to drag image
 const ZoomImage = styled.img<{ zoomed: boolean }>`
   max-width: 100%;
   height: auto;

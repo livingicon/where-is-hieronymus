@@ -22,5 +22,13 @@
   },
   "include": [
     "src"
+  ],
+  "moduleDeclaration": true,
+  "mediaFiles": [
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.jpeg",
+    "**/*.gif",
+    "**/*.svg"
   ]
 }
