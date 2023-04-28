@@ -3,6 +3,9 @@
 import React from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import TemptAnthony from "../images/temptation_of_saint_anthony.jpg";
+import GardenDelights from "../images/the-garden-of-earthly-delights.png";
+import LastJudgement from "../images/the-last-judgement.jpg";
 // import { Routes, Route } from "react-router-dom";
 // import Leaderboard from "./Leaderboard";
 
@@ -14,13 +17,13 @@ const Gameboards: React.FC = () => {
       <GameboardImages>
         {/* Must turn each below into a Link */}
         <Link to="/the-temptation-of-saint-anthony">
-          <Image src={require('../images/temptation_of_saint_anthony.jpg')} alt="The Temptation of Saint Anthony Painting" />
+          <Image src={TemptAnthony} alt="The Temptation of Saint Anthony Painting" />
         </Link>
         <Link to="/the-garden-of-earthly-delights">
-          <Image src={require('../images/the-garden-of-earthly-delights.png')} alt="The Garden of Earthly Delights Painting" />
+          <Image src={GardenDelights} alt="The Garden of Earthly Delights Painting" />
         </Link>
         <Link to="/the-last-judgement">
-          <Image src={require('../images/the-last-judgement.jpg')} alt="The Last Judgement Painting" />
+          <Image src={LastJudgement} alt="The Last Judgement Painting" />
         </Link>
       </GameboardImages>
     </GameboardsContainer>

@@ -7,6 +7,7 @@ import Temptation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
 import TinBird from "../../images/TemptTinBird.png";
 import Frank from "../../images/TemptFrank.png";
+import Timer from "../../components/Timer";
 
 // { startTimer, isVisible, closeModal, handleImageClick } // add below and move functions out
 const GameboardOne: React.FC = () => {
@@ -41,9 +42,8 @@ const GameboardOne: React.FC = () => {
       }
       <TemptationGameboardWrapper>
         <InfoWrapper>
-          <h1>Timer</h1>
+          <Timer />
           <KeyWrapper>
-            <h2>Find</h2>
             <div className="characters">
               <p>Alice</p>
               <img src={Alice} alt="Dark skinned woman" />
@@ -109,11 +109,16 @@ const ModalWrapper = styled.div`
 `;
 
 const TemptationGameboardWrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const InfoWrapper = styled.div`
-
+  background-color: black;
+  color: white;
+  width: 300px;
 `;
 
 const KeyWrapper = styled.div`
@@ -121,6 +126,8 @@ const KeyWrapper = styled.div`
   img {
     border-radius: 50%;
     width: 50px;
+    margin: 10px;
+    border: 1px solid white;
   }
 `;
 
