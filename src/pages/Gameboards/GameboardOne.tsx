@@ -40,18 +40,24 @@ const GameboardOne: React.FC = () => {
         </ModalWrapper>
       }
       <TemptationGameboardWrapper>
-        <h1>Timer</h1>
-        <div>
-          <h1>Find</h1>
+        <InfoWrapper>
+          <h1>Timer</h1>
           <KeyWrapper>
-            <img src={Alice} alt="Dark skinned woman" />
-            <img src={TinBird} alt="Bird in knight's helmet" />
-            <img src={Frank} alt="Hidden hooded figure" />
+            <h2>Find</h2>
+            <div className="characters">
+              <p>Alice</p>
+              <img src={Alice} alt="Dark skinned woman" />
+            </div>
+            <div className="characters">
+              <p>Tinbird</p>
+              <img src={TinBird} alt="Bird in knight's helmet" />
+            </div>
+            <div className="characters">
+              <p>Frank</p>
+              <img src={Frank} alt="Shadowy hooded figure" />
+            </div>
           </KeyWrapper>
-        </div>
-        {/* <GameTimer
-        // add timer
-        /> */}
+        </InfoWrapper>
         <ZoomImage 
           src={Temptation} 
           alt="The Temptation of Saint Anthony Painting" 
@@ -106,8 +112,16 @@ const TemptationGameboardWrapper = styled.div`
   display: grid;
 `;
 
-const KeyWrapper = styled.div`
+const InfoWrapper = styled.div`
 
+`;
+
+const KeyWrapper = styled.div`
+  display: flex;
+  img {
+    border-radius: 50%;
+    width: 50px;
+  }
 `;
 
 // change so that you can zoom all the way in and click to drag image
