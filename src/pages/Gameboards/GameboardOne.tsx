@@ -13,10 +13,13 @@ import Timer from "../../components/Timer";
 const GameboardOne: React.FC = () => {
   const [zoomed, setZoomed] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [counter, setCounter] = useState<number>(0);
+  const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
 
-  const closeModal = (): void => isVisible ? setIsVisible(false) : setIsVisible(true);
-  
-  const startTimer = () => console.log("working");
+  const startTimer = () => {
+    setIsVisible(false);
+    setIsTimerStarted(true);
+  };
 
   const handleImageClick = () => {
     setZoomed(!zoomed);
@@ -33,7 +36,7 @@ const GameboardOne: React.FC = () => {
               showing the available characters and you will click on the one you have found.
               When you are ready, you may click the start button and the timer will begin.
               The timer will end when you have found all three characters.</p>
-            <button onClick={() => {closeModal(); startTimer();}}>Start</button>
+            <button onClick={() => {startTimer();}}>Start</button>
             <Link to="/">
               <button>Cancel</button>
             </Link>
@@ -42,7 +45,12 @@ const GameboardOne: React.FC = () => {
       }
       <TemptationGameboardWrapper>
         <InfoWrapper>
-          <Timer />
+          {isTimerStarted && (
+            <Timer 
+              counter={counter}
+              setCounter={setCounter}
+            />
+          )}
           <KeyWrapper>
             <div className="characters">
               <p>Alice</p>
