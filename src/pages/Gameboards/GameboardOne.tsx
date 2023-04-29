@@ -8,23 +8,26 @@ import Alice from "../../images/TemptAlice.png";
 import TinBird from "../../images/TemptTinBird.png";
 import Frank from "../../images/TemptFrank.png";
 import Timer from "../../components/Timer";
+import TargetBox from "../../components/TargetBox";
 
-// { startTimer, isVisible, closeModal, handleImageClick } // add below and move functions out
 const GameboardOne: React.FC = () => {
   const [zoomed, setZoomed] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
-
+  const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
+  
   const startTimer = () => {
     setIsVisible(false);
     setIsTimerStarted(true);
   };
 
-  const handleImageClick = () => {
+  const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
+    console.log(`Clicked at location: (${event.clientX}, ${event.clientY})`);
     setZoomed(!zoomed);
+    setDropdownLocation({ x: event.clientX, y: event.clientY });
   };
-  
+
   return (
     <GameboardOneContainer>
       {isVisible &&
@@ -68,12 +71,16 @@ const GameboardOne: React.FC = () => {
         </InfoWrapper>
         <ZoomImage 
           src={Temptation} 
-          alt="The Temptation of Saint Anthony Painting" 
           zoomed={zoomed}
           onClick={handleImageClick}
         />
+        {dropdownLocation && (
+          <TargetBox 
+            x={dropdownLocation.x} 
+            y={dropdownLocation.y} 
+          />
+        )}
       </TemptationGameboardWrapper>
-
     </GameboardOneContainer>
   );
 };
