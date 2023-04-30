@@ -33,6 +33,7 @@ const NavWrapper = styled.div`
     align-items: center;
     padding: 10px;
     background-color: #f0f0f0;
+    width: 100vw;
   }
 
   div {

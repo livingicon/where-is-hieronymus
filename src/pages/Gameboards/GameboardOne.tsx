@@ -10,22 +10,42 @@ import Frank from "../../images/TemptFrank.png";
 import Timer from "../../components/Timer";
 import TargetBox from "../../components/TargetBox";
 
+interface aliceLocationProps {
+  x: number;
+  y: number;
+  radius: number;
+}
+
 const GameboardOne: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
-  
+  // const [targetBox, setTargetBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
+
   const startTimer = () => {
     setIsVisible(false);
     setIsTimerStarted(true);
   };
+
+  const boxLeft = 434;
+  const boxRight = 455;
+  const boxTop = 210;
+  const boxBottom = 255;
+
 
   const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
     console.log(`Clicked at location: (${x}, ${y})`);
+    if (x >= boxLeft && x <= boxRight && y >= boxTop && y <= boxBottom) {
+      console.log('Hit!');
+      // Do something if the click is within the box
+    } else {
+      console.log('Miss!');
+      // Do something if the click is outside the box
+    }
     setDropdownLocation({ x, y });
   };    
 
