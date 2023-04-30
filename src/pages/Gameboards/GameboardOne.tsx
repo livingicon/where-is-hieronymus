@@ -50,7 +50,7 @@ const GameboardOne: React.FC = () => {
         </ModalWrapper>
       }
       <TemptationGameboardWrapper>
-        {/* <InfoWrapper>
+        <InfoWrapper>
           {isTimerStarted && (
             <Timer 
               counter={counter}
@@ -71,25 +71,32 @@ const GameboardOne: React.FC = () => {
               <img src={Frank} alt="Shadowy hooded figure" />
             </div>
           </KeyWrapper>
-        </InfoWrapper> */}
-        <ZoomImage 
-          src={Temptation} 
-          zoomed={zoomed}
-          onClick={handleImageClick}
-        />
-        {dropdownLocation && (
-          <TargetBox 
-            x={dropdownLocation.x} 
-            y={dropdownLocation.y} 
+        </InfoWrapper>
+        <ImageWrapper>
+          <Image 
+            src={Temptation} 
+            zoomed={zoomed}
+            onClick={handleImageClick}
           />
-        )}
+          {dropdownLocation && (
+            <TargetBox 
+              x={dropdownLocation.x} 
+              y={dropdownLocation.y} 
+            />
+          )}
+        </ImageWrapper>
       </TemptationGameboardWrapper>
     </GameboardOneContainer>
   );
 };
 
 const GameboardOneContainer = styled.div`
-  position: relative;
+  position: relative; // this was all that was there at first
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
 
 const ModalWrapper = styled.div`
@@ -148,9 +155,11 @@ const KeyWrapper = styled.div`
     border: 1px solid white;
   }
 `;
-
+const ImageWrapper = styled.div`
+  position: relative;
+`;
 // change so that you can zoom all the way in and click to drag image
-const ZoomImage = styled.img<{ zoomed: boolean }>`
+const Image = styled.img<{ zoomed: boolean }>`
   max-width: 100%;
   height: auto;
   cursor: pointer;
@@ -158,4 +167,4 @@ const ZoomImage = styled.img<{ zoomed: boolean }>`
   ${({ zoomed }) => zoomed && `width: 100%;`}
 `;
 
-export { GameboardOne, ZoomImage };
+export { GameboardOne, Image };

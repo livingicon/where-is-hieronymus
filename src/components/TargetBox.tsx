@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Alice from "../images/TemptAlice.png";
 
 interface TargetBoxProps {
   x: number;
@@ -9,7 +10,7 @@ interface TargetBoxProps {
 const TargetBox: React.FC<TargetBoxProps> = ({ x, y }) => {
   return (
     <DropdownWrapper x={x} y={y}>
-      <img src="https://placehold.it/50x50" alt="dropdown content" />
+      <img src={Alice} alt="Alice" />
     </DropdownWrapper>
   );
 };
@@ -22,6 +23,11 @@ const DropdownWrapper = styled.div<{ x: number; y: number }>`
   border-radius: 5px;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
   padding: 10px;
+
+  // update later (placeholder)
+  img {
+    width: 50px;
+  }
 `;
 
 export default TargetBox;

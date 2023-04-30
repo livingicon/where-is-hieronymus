@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styled from 'styled-components';
-import { ZoomImage } from "./GameboardOne";
+import { Image } from "./GameboardOne";
 
 const GameboardTwo: React.FC = () => {
   const [zoomed, setZoomed] = useState<boolean>(false);
@@ -13,7 +13,7 @@ const GameboardTwo: React.FC = () => {
 
   return (
     <GameboardTwoContainer>
-      <ZoomImage src={require('../../images/the-garden-of-earthly-delights.png')} 
+      <Image src={require('../../images/the-garden-of-earthly-delights.png')} 
       alt="The Garden of Earthly Delights Painting"
       zoomed={zoomed}
       onClick={handleImageClick}

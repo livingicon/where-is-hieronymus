@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styled from 'styled-components';
-import { ZoomImage } from "./GameboardOne";
+import { Image } from "./GameboardOne";
 
 const GameboardThree: React.FC = () => {
   const [zoomed, setZoomed] = useState<boolean>(false);
@@ -13,7 +13,7 @@ const GameboardThree: React.FC = () => {
 
   return (
     <GameboardThreeContainer>
-      <ZoomImage src={require('../../images/the-last-judgement.jpg')} 
+      <Image src={require('../../images/the-last-judgement.jpg')} 
       alt="The Last Judgement Painting" 
       zoomed={zoomed}
       onClick={handleImageClick}
