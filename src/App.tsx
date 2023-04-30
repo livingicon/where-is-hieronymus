@@ -23,10 +23,8 @@ const App: React.FC = () => {
     <>
       <GlobalStyles />
         <Router>
-          <div>
-            <Nav />
-            <Main />
-          </div>
+          <Nav />
+          <Main />
         </Router>
     </>
   );

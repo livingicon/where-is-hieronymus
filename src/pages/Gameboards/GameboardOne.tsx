@@ -47,53 +47,50 @@ const GameboardOne: React.FC = () => {
           </section>
         </ModalWrapper>
       }
-      <TemptationGameboardWrapper>
-        <InfoWrapper>
-          {isTimerStarted && (
-            <Timer 
-              counter={counter}
-              setCounter={setCounter}
-            />
-          )}
-          <KeyWrapper>
-            <div className="characters">
-              <p>Alice</p>
-              <img src={Alice} alt="Dark skinned woman" />
-            </div>
-            <div className="characters">
-              <p>Tinbird</p>
-              <img src={TinBird} alt="Bird in knight's helmet" />
-            </div>
-            <div className="characters">
-              <p>Frank</p>
-              <img src={Frank} alt="Shadowy hooded figure" />
-            </div>
-          </KeyWrapper>
-        </InfoWrapper>
-        <ImageWrapper>
-          <Image 
-            src={Temptation} 
-            onClick={handleImageClick}
+      <InfoWrapper>
+        {isTimerStarted && (
+          <Timer 
+            counter={counter}
+            setCounter={setCounter}
           />
-          {dropdownLocation && (
-            <TargetBox 
-              x={dropdownLocation.x} 
-              y={dropdownLocation.y} 
-            />
-          )}
-        </ImageWrapper>
-      </TemptationGameboardWrapper>
+        )}
+        <KeyWrapper>
+          <div className="characters">
+            <p>Alice</p>
+            <img src={Alice} alt="Dark skinned woman" />
+          </div>
+          <div className="characters">
+            <p>Tinbird</p>
+            <img src={TinBird} alt="Bird in knight's helmet" />
+          </div>
+          <div className="characters">
+            <p>Frank</p>
+            <img src={Frank} alt="Shadowy hooded figure" />
+          </div>
+        </KeyWrapper>
+      </InfoWrapper>
+      <ImageWrapper>
+        <Image 
+          src={Temptation} 
+          onClick={handleImageClick}
+        />
+        {dropdownLocation && (
+          <TargetBox 
+            x={dropdownLocation.x} 
+            y={dropdownLocation.y} 
+          />
+        )}
+      </ImageWrapper>
     </GameboardOneContainer>
   );
 };
 
-const GameboardOneContainer = styled.div`
+const GameboardOneContainer = styled.div` 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin-top: 50px;
+  margin-top: 15px;
 `;
 
 const ModalWrapper = styled.div`
@@ -129,13 +126,6 @@ const ModalWrapper = styled.div`
   button {
     width: 100px;
   }
-`;
-
-const TemptationGameboardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 const InfoWrapper = styled.div`

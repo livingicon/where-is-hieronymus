@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import TemptAnthony from "../images/temptation_of_saint_anthony.jpg";
 import GardenDelights from "../images/the-garden-of-earthly-delights.png";
 import LastJudgement from "../images/the-last-judgement.jpg";
-// import { Routes, Route } from "react-router-dom";
-// import Leaderboard from "./Leaderboard";
 
 const Gameboards: React.FC = () => {
 
@@ -15,7 +13,6 @@ const Gameboards: React.FC = () => {
     <GameboardsContainer>
       <p>Click a Hieronymus Bosch painting to go to it's gameboard.</p>
       <GameboardImages>
-        {/* Must turn each below into a Link */}
         <Link to="/the-temptation-of-saint-anthony">
           <Image src={TemptAnthony} alt="The Temptation of Saint Anthony Painting" />
         </Link>
@@ -31,7 +28,8 @@ const Gameboards: React.FC = () => {
 };
 
 const GameboardsContainer = styled.div`
-  display: grid;
+position: absolute;  
+display: grid;
   text-align: center;
   color: #333;
 `
