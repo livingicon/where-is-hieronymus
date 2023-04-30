@@ -20,9 +20,9 @@ const DropdownWrapper = styled.div<{ x: number; y: number }>`
   top: ${({ y }) => y}px;
   left: ${({ x }) => x}px;
   background-color: white;
-  border-radius: 5px;
+  // border-radius: 5px;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  padding: 2px;
 
   // update later (placeholder)
   img {

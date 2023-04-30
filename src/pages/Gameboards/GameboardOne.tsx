@@ -91,15 +91,16 @@ const GameboardOne: React.FC = () => {
 };
 
 const GameboardOneContainer = styled.div`
-  position: relative; // this was all that was there at first
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-top: 100px;
 `;
 
 const ModalWrapper = styled.div`
+  z-index: 1;
   display: flex;  
   justify-content: center;
   align-items: center;
@@ -148,6 +149,7 @@ const InfoWrapper = styled.div`
 
 const KeyWrapper = styled.div`
   display: flex;
+
   img {
     border-radius: 50%;
     width: 50px;
@@ -156,7 +158,7 @@ const KeyWrapper = styled.div`
   }
 `;
 const ImageWrapper = styled.div`
-  position: relative;
+  position: relative; // without the dropdown is too high
 `;
 // change so that you can zoom all the way in and click to drag image
 const Image = styled.img<{ zoomed: boolean }>`
