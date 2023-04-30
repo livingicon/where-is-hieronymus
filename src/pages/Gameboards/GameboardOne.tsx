@@ -11,7 +11,6 @@ import Timer from "../../components/Timer";
 import TargetBox from "../../components/TargetBox";
 
 const GameboardOne: React.FC = () => {
-  const [zoomed, setZoomed] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
@@ -27,9 +26,8 @@ const GameboardOne: React.FC = () => {
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
     console.log(`Clicked at location: (${x}, ${y})`);
-    setZoomed(!zoomed);
     setDropdownLocation({ x, y });
-  };  
+  };    
 
   return (
     <GameboardOneContainer>
@@ -75,7 +73,6 @@ const GameboardOne: React.FC = () => {
         <ImageWrapper>
           <Image 
             src={Temptation} 
-            zoomed={zoomed}
             onClick={handleImageClick}
           />
           {dropdownLocation && (
@@ -96,7 +93,7 @@ const GameboardOneContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 const ModalWrapper = styled.div`
@@ -161,12 +158,9 @@ const ImageWrapper = styled.div`
   position: relative; // without the dropdown is too high
 `;
 // change so that you can zoom all the way in and click to drag image
-const Image = styled.img<{ zoomed: boolean }>`
-  max-width: 100%;
-  height: auto;
-  cursor: pointer;
-  margin-top: 15px;
-  ${({ zoomed }) => zoomed && `width: 100%;`}
+const Image = styled.img`
+  width: 1000px;
+  margin-top: 15px; 
 `;
 
 export { GameboardOne, Image };
