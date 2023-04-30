@@ -23,10 +23,13 @@ const GameboardOne: React.FC = () => {
   };
 
   const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
-    console.log(`Clicked at location: (${event.clientX}, ${event.clientY})`);
+    const imgRect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - imgRect.left;
+    const y = event.clientY - imgRect.top;
+    console.log(`Clicked at location: (${x}, ${y})`);
     setZoomed(!zoomed);
-    setDropdownLocation({ x: event.clientX, y: event.clientY });
-  };
+    setDropdownLocation({ x, y });
+  };  
 
   return (
     <GameboardOneContainer>
@@ -47,7 +50,7 @@ const GameboardOne: React.FC = () => {
         </ModalWrapper>
       }
       <TemptationGameboardWrapper>
-        <InfoWrapper>
+        {/* <InfoWrapper>
           {isTimerStarted && (
             <Timer 
               counter={counter}
@@ -68,7 +71,7 @@ const GameboardOne: React.FC = () => {
               <img src={Frank} alt="Shadowy hooded figure" />
             </div>
           </KeyWrapper>
-        </InfoWrapper>
+        </InfoWrapper> */}
         <ZoomImage 
           src={Temptation} 
           zoomed={zoomed}
