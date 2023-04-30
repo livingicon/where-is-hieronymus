@@ -27,12 +27,12 @@ const Gameboards: React.FC = () => {
   );
 };
 
-const GameboardsContainer = styled.div`
-position: absolute;  
-display: grid;
+const GameboardsContainer = styled.div` 
+  display: grid;
   text-align: center;
   color: #333;
-`
+`;
+
 const GameboardImages = styled.div`
   display: flex;
   justify-content: center;

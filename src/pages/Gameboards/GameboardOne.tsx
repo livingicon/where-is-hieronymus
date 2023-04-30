@@ -21,33 +21,36 @@ const GameboardOne: React.FC = () => {
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
-  // const [targetBox, setTargetBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-
+  
   const startTimer = () => {
     setIsVisible(false);
     setIsTimerStarted(true);
   };
 
-  const boxLeft = 434;
-  const boxRight = 455;
-  const boxTop = 210;
-  const boxBottom = 255;
-
+  const aliceBox = {
+    left: 434,
+    right: 455,
+    top: 210,
+    bottom: 255,
+  };
 
   const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    console.log(`Clicked at location: (${x}, ${y})`);
-    if (x >= boxLeft && x <= boxRight && y >= boxTop && y <= boxBottom) {
-      console.log('Hit!');
-      // Do something if the click is within the box
-    } else {
-      console.log('Miss!');
-      // Do something if the click is outside the box
-    }
-    setDropdownLocation({ x, y });
-  };    
+    // console.log(`Clicked at location: (${x}, ${y})`);
+    setDropdownLocation({ x: x - 25, y: y + 20 });
+  };
+  
+  // const handleDropdownClick = () => {
+  //   if (x >= aliceBox.left && x <= aliceBox.right && y >= aliceBox.top && y <= aliceBox.bottom) {
+  //     console.log('Alice');
+  //     // 
+  //   } else {
+  //     console.log('Nothing');
+  //     // Do something if the click is outside the box
+  //   }
+  // }
 
   return (
     <GameboardOneContainer>
@@ -97,7 +100,7 @@ const GameboardOne: React.FC = () => {
         {dropdownLocation && (
           <TargetBox 
             x={dropdownLocation.x} 
-            y={dropdownLocation.y} 
+            y={dropdownLocation.y}
           />
         )}
       </ImageWrapper>
