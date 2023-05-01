@@ -19,10 +19,18 @@ const GameboardOne: React.FC = () => {
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const temptCharacters = [Alice, TinBird, Frank];
+  const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
+
+  useEffect(() => {
+    if (temptCharacters.length === 0) {
+      console.log("game over!")
+      // stop and save timer
+      // launch register for leaderboard
+    }
+  }, [temptCharacters]);
 
   const startTimer = (): void => {
     setIsVisible(false);
@@ -33,27 +41,27 @@ const GameboardOne: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
-      // console.log(`Clicked at location: (${x}, ${y})`);
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 
     }
   };
 
-  //this is the only one passed to TargetBox right now
   const handleDropImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    if (dropdownLocation && dropdownLocation.x >= aliceBox.left 
+    if ((dropdownLocation && dropdownLocation.x >= aliceBox.left 
       && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
-      && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice') {
-      //console.log('Alice hit');
+      && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice')
+      || (dropdownLocation && dropdownLocation.x >= tinBirdBox.left 
+      && dropdownLocation.x <= tinBirdBox.right && dropdownLocation.y >= tinBirdBox.top 
+      && dropdownLocation.y <= tinBirdBox.bottom && e.currentTarget.alt === 'TinBird')
+      || (dropdownLocation && dropdownLocation.x >= frankBox.left 
+        && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
+        && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       // make green checkmark
       // make unclickable
-      // pop off temptCharacters
-      temptCharacters.splice(temptCharacters.indexOf('Alice'), 1);
-      // run gameOver
-      temptGameOver();
+      const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
+      setTemptCharacters(updatedCharacters);
     } else {
       setIsDropdownVisible(false);
     }
@@ -62,16 +70,6 @@ const GameboardOne: React.FC = () => {
   const handleCloseClick = (): void => {
     setIsDropdownVisible(false);
   };
-
-  const temptGameOver = () => {
-    if (temptCharacters.length === 0) {
-      console.log('game over')
-    // stop and save timer
-    // launch register for leaderboard
-    } else {
-      console.log(temptCharacters.length)
-    }
-  }
 
   return (
     <GameboardOneContainer>
