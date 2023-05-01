@@ -1,4 +1,7 @@
 // GameboardOne.tsx
+// if you click Alice img, check if it's Alice
+// if it is Alice, checkbox over image her
+// if it isn't Alice, shake dropdown and it goes away
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -16,45 +19,46 @@ const GameboardOne: React.FC = () => {
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+  const temptCharacters = [Alice, TinBird, Frank];
+  const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
 
   const startTimer = (): void => {
     setIsVisible(false);
     setIsTimerStarted(true);
   };
 
-  const aliceBox = {
-    left: 434,
-    right: 455,
-    top: 210,
-    bottom: 255,
-  };
-
   const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
+      // console.log(`Clicked at location: (${x}, ${y})`);
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 
     }
-    // how to only run this if the dropdown image is clicked?
-    handleDropdownClick(x, y);
   };
+
+  //this is the only one passed to TargetBox right now
+  const handleDropImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (dropdownLocation && dropdownLocation.x >= aliceBox.left 
+      && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
+      && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice') {
+      console.log('Alice hit');
+      console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
+    } else {
+      setIsDropdownVisible(false);
+    }
+  }
 
   const handleCancelClick = (): void => {
     setIsDropdownVisible(false);
   };
-  
-  const handleDropdownClick = (x: number, y: number) => {
-    // if you click Alice img, check if it's Alice
-    // if it is Alice, checkbox over image her
-    // if it isn't Alice, shake dropdown and it goes away
-    
-    if (x >= aliceBox.left && x <= aliceBox.right && y >= aliceBox.top && y <= aliceBox.bottom) {
-      console.log('Alice');
-    } else {
-      console.log('Nothing');
+
+  const temptGameOver = () => {
+    if (temptCharacters.length === 0) {
+          // say game over
+    // stop and save timer
+    // launch register for leaderboard
     }
   }
 
@@ -108,6 +112,7 @@ const GameboardOne: React.FC = () => {
             x={dropdownLocation.x} 
             y={dropdownLocation.y}
             handleCancelClick={handleCancelClick}
+            handleDropImageClick={handleDropImageClick}
           />
         )}
       </ImageWrapper>
