@@ -1,7 +1,4 @@
 // GameboardOne.tsx
-// if you click Alice img, check if it's Alice
-// if it is Alice, checkbox over image her
-// if it isn't Alice, shake dropdown and it goes away
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -60,6 +57,7 @@ const GameboardOne: React.FC = () => {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       // make green checkmark
       // make unclickable
+      setIsDropdownVisible(false); 
       const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
       setTemptCharacters(updatedCharacters);
     } else {
@@ -174,9 +172,14 @@ const ModalWrapper = styled.div`
 
 // CHANGE TO ABSOLUTE POSITIONED AND SIZED FOR ZOOM ALWAYS ON SCREEN?
 const InfoWrapper = styled.div`
+  position: fixed;
+  z-index: 1;
+  top: 3%;
+  left: 3%;
+  width: 150px;
+  height: 75px;
   background-color: black;
   color: white;
-  width: 300px;
 `;
 
 const KeyWrapper = styled.div`
@@ -184,9 +187,13 @@ const KeyWrapper = styled.div`
 
   img {
     border-radius: 50%;
-    width: 50px;
-    margin: 10px;
+    width: 30px;
+    margin: 0px;
     border: 1px solid white;
+  }
+
+  p {
+    margin: 0;
   }
 `;
 const ImageWrapper = styled.div`
