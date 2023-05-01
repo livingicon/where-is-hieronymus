@@ -7,18 +7,18 @@ import Frank from "../images/TemptFrank.png";
 interface TargetBoxProps {
   x: number;
   y: number;
-  handleCancelClick: () => void;
+  handleCloseClick: () => void;
   handleDropImageClick: (e: React.MouseEvent<HTMLImageElement>) => void;
 }
 
-const TargetBox: React.FC<TargetBoxProps> = ({ x, y, handleCancelClick, handleDropImageClick }) => {
+const TargetBox: React.FC<TargetBoxProps> = ({ x, y, handleCloseClick, handleDropImageClick }) => {
 
   return (
     <DropdownWrapper x={x} y={y}>
       <img src={Alice} alt="Alice" onClick={handleDropImageClick}/>
       <img src={TinBird} alt="TinBird" onClick={handleDropImageClick}/>
       <img src={Frank} alt="Frank" onClick={handleDropImageClick}/>
-      <button onClick={handleCancelClick}>Cancel</button>
+      <button onClick={handleCloseClick}>CLOSE</button>
     </DropdownWrapper>
   );
 };

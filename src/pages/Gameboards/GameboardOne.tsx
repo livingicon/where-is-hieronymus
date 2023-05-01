@@ -21,6 +21,8 @@ const GameboardOne: React.FC = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const temptCharacters = [Alice, TinBird, Frank];
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
+  const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
+  const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
 
   const startTimer = (): void => {
     setIsVisible(false);
@@ -31,6 +33,7 @@ const GameboardOne: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
+    console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
       // console.log(`Clicked at location: (${x}, ${y})`);
       setDropdownLocation({ x, y });
@@ -43,22 +46,30 @@ const GameboardOne: React.FC = () => {
     if (dropdownLocation && dropdownLocation.x >= aliceBox.left 
       && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
       && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice') {
-      console.log('Alice hit');
-      console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
+      //console.log('Alice hit');
+      //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
+      // make green checkmark
+      // make unclickable
+      // pop off temptCharacters
+      temptCharacters.splice(temptCharacters.indexOf('Alice'), 1);
+      // run gameOver
+      temptGameOver();
     } else {
       setIsDropdownVisible(false);
     }
   }
 
-  const handleCancelClick = (): void => {
+  const handleCloseClick = (): void => {
     setIsDropdownVisible(false);
   };
 
   const temptGameOver = () => {
     if (temptCharacters.length === 0) {
-          // say game over
+      console.log('game over')
     // stop and save timer
     // launch register for leaderboard
+    } else {
+      console.log(temptCharacters.length)
     }
   }
 
@@ -111,7 +122,7 @@ const GameboardOne: React.FC = () => {
           <TargetBox
             x={dropdownLocation.x} 
             y={dropdownLocation.y}
-            handleCancelClick={handleCancelClick}
+            handleCloseClick={handleCloseClick}
             handleDropImageClick={handleDropImageClick}
           />
         )}
@@ -163,6 +174,7 @@ const ModalWrapper = styled.div`
   }
 `;
 
+// CHANGE TO ABSOLUTE POSITIONED AND SIZED FOR ZOOM ALWAYS ON SCREEN?
 const InfoWrapper = styled.div`
   background-color: black;
   color: white;
