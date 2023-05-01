@@ -1,6 +1,6 @@
 // GameboardOne.tsx
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import Temptation from '../../images/temptation_of_saint_anthony.jpg';
@@ -10,19 +10,14 @@ import Frank from "../../images/TemptFrank.png";
 import Timer from "../../components/Timer";
 import TargetBox from "../../components/TargetBox";
 
-interface aliceLocationProps {
-  x: number;
-  y: number;
-  radius: number;
-}
-
 const GameboardOne: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
-  
-  const startTimer = () => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+
+  const startTimer = (): void => {
     setIsVisible(false);
     setIsTimerStarted(true);
   };
@@ -38,19 +33,30 @@ const GameboardOne: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    // console.log(`Clicked at location: (${x}, ${y})`);
-    setDropdownLocation({ x: x - 25, y: y + 20 });
+    console.log(`Clicked at location: (${x}, ${y})`);
+    if (!isDropdownVisible) {
+      setDropdownLocation({ x, y });
+      setIsDropdownVisible(true); 
+    }
+    // how to only run this if the dropdown image is clicked?
+    handleDropdownClick(x, y);
+  };
+
+  const handleCancelClick = (): void => {
+    setIsDropdownVisible(false);
   };
   
-  // const handleDropdownClick = () => {
-  //   if (x >= aliceBox.left && x <= aliceBox.right && y >= aliceBox.top && y <= aliceBox.bottom) {
-  //     console.log('Alice');
-  //     // 
-  //   } else {
-  //     console.log('Nothing');
-  //     // Do something if the click is outside the box
-  //   }
-  // }
+  const handleDropdownClick = (x: number, y: number) => {
+    // if you click Alice img, check if it's Alice
+    // if it is Alice, checkbox over image her
+    // if it isn't Alice, shake dropdown and it goes away
+    
+    if (x >= aliceBox.left && x <= aliceBox.right && y >= aliceBox.top && y <= aliceBox.bottom) {
+      console.log('Alice');
+    } else {
+      console.log('Nothing');
+    }
+  }
 
   return (
     <GameboardOneContainer>
@@ -97,10 +103,11 @@ const GameboardOne: React.FC = () => {
           src={Temptation} 
           onClick={handleImageClick}
         />
-        {dropdownLocation && (
-          <TargetBox 
+        {isDropdownVisible && dropdownLocation && (
+          <TargetBox
             x={dropdownLocation.x} 
             y={dropdownLocation.y}
+            handleCancelClick={handleCancelClick}
           />
         )}
       </ImageWrapper>
