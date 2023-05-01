@@ -17,17 +17,21 @@ const GameboardOne: React.FC = () => {
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
+  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
+
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
 
   useEffect(() => {
     if (temptCharacters.length === 0) {
-      console.log("game over!")
-      // stop and save timer
+      console.log("game over!");
+      setIsTimerStarted(false); // Stop the timer
+      const time = counter; // Save the current counter value as the time
+      console.log(`Time taken: ${time} seconds`);
       // launch register for leaderboard
     }
-  }, [temptCharacters]);
+  }, [temptCharacters, counter]);
 
   const startTimer = (): void => {
     setIsVisible(false);
@@ -136,7 +140,7 @@ const GameboardOneContainer = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  z-index: 1;
+  z-index: 2;
   display: flex;  
   justify-content: center;
   align-items: center;

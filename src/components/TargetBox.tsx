@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Alice from "../images/TemptAlice.png";
 import TinBird from "../images/TemptTinBird.png";
@@ -12,12 +12,16 @@ interface TargetBoxProps {
 }
 
 const TargetBox: React.FC<TargetBoxProps> = ({ x, y, handleCloseClick, handleDropImageClick }) => {
+  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
 
   return (
     <DropdownWrapper x={x} y={y}>
       <img src={Alice} alt="Alice" onClick={handleDropImageClick}/>
+      {selectedCharacter === 'Alice' && <div className="checkmark"></div>}
       <img src={TinBird} alt="TinBird" onClick={handleDropImageClick}/>
+      {selectedCharacter === 'TinBird' && <div className="checkmark"></div>}
       <img src={Frank} alt="Frank" onClick={handleDropImageClick}/>
+      {selectedCharacter === 'Frank' && <div className="checkmark"></div>}
       <button onClick={handleCloseClick}>CLOSE</button>
     </DropdownWrapper>
   );
