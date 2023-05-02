@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Alice from "../images/TemptAlice.png";
 import TinBird from "../images/TemptTinBird.png";
 import Frank from "../images/TemptFrank.png";
+import checkmark from "../images/checkmark.png";
 
 interface TargetBoxProps {
   x: number;
@@ -11,17 +12,26 @@ interface TargetBoxProps {
   handleDropImageClick: (e: React.MouseEvent<HTMLImageElement>) => void;
 }
 
-const TargetBox: React.FC<TargetBoxProps> = ({ x, y, handleCloseClick, handleDropImageClick }) => {
-  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
-
+const TargetBox: React.FC<TargetBoxProps> = ({ 
+  x, 
+  y, 
+  handleCloseClick, 
+  handleDropImageClick }) => {
+  
   return (
     <DropdownWrapper x={x} y={y}>
-      <img src={Alice} alt="Alice" onClick={handleDropImageClick}/>
-      {selectedCharacter === 'Alice' && <div className="checkmark"></div>}
-      <img src={TinBird} alt="TinBird" onClick={handleDropImageClick}/>
-      {selectedCharacter === 'TinBird' && <div className="checkmark"></div>}
-      <img src={Frank} alt="Frank" onClick={handleDropImageClick}/>
-      {selectedCharacter === 'Frank' && <div className="checkmark"></div>}
+      <div className="character-container">
+        <img src={Alice} alt="Alice" className="character" onClick={handleDropImageClick}/>
+        <img src={checkmark} alt="check mark" className="checkmark" />
+      </div>
+      <div className="character-container">
+        <img src={TinBird} alt="TinBird" className="character" onClick={handleDropImageClick}/>
+        <img src={checkmark} alt="check mark" className="checkmark" />
+      </div>
+      <div className="character-container">
+        <img src={Frank} alt="Frank" className="character" onClick={handleDropImageClick}/>
+        <img src={checkmark} alt="check mark" className="checkmark" />
+      </div>
       <button onClick={handleCloseClick}>CLOSE</button>
     </DropdownWrapper>
   );
@@ -49,15 +59,27 @@ const DropdownWrapper = styled.div<{ x: number; y: number }>`
   }
 
   // update later (placeholder)
-  img {
+  .character {
     position: relative;
     width: 50px;
     height: 51.48px;
     border-radius: 50%;
   }
 
-  img: hover {
+  .character: hover {
     transform: scale(1.1);
+  }
+
+  .character-container {
+    position: relative;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 45px;
+    height: 47px;
   }
 `;
 

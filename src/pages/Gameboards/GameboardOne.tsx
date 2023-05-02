@@ -17,7 +17,6 @@ const GameboardOne: React.FC = () => {
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
-  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
 
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
@@ -60,8 +59,7 @@ const GameboardOne: React.FC = () => {
         && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       // make green checkmark
-      // make unclickable
-      setIsDropdownVisible(false); 
+      setIsDropdownVisible(false);
       const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
       setTemptCharacters(updatedCharacters);
     } else {
