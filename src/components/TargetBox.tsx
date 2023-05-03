@@ -10,27 +10,30 @@ interface TargetBoxProps {
   y: number;
   handleCloseClick: () => void;
   handleDropImageClick: (e: React.MouseEvent<HTMLImageElement>) => void;
+  temptCharacters: string[];
 }
 
 const TargetBox: React.FC<TargetBoxProps> = ({ 
   x, 
   y, 
   handleCloseClick, 
-  handleDropImageClick }) => {
+  handleDropImageClick,
+  temptCharacters,
+}) => { 
   
   return (
     <DropdownWrapper x={x} y={y}>
       <div className="character-container">
         <img src={Alice} alt="Alice" className="character" onClick={handleDropImageClick}/>
-        <img src={checkmark} alt="check mark" className="checkmark" />
+        {!temptCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
       </div>
       <div className="character-container">
         <img src={TinBird} alt="TinBird" className="character" onClick={handleDropImageClick}/>
-        <img src={checkmark} alt="check mark" className="checkmark" />
+        {!temptCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
       </div>
       <div className="character-container">
         <img src={Frank} alt="Frank" className="character" onClick={handleDropImageClick}/>
-        <img src={checkmark} alt="check mark" className="checkmark" />
+        {!temptCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
       </div>
       <button onClick={handleCloseClick}>CLOSE</button>
     </DropdownWrapper>

@@ -7,6 +7,7 @@ import Temptation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
 import TinBird from "../../images/TemptTinBird.png";
 import Frank from "../../images/TemptFrank.png";
+import checkmark from "../../images/checkmark.png";
 import Timer from "../../components/Timer";
 import TargetBox from "../../components/TargetBox";
 
@@ -17,7 +18,7 @@ const GameboardOne: React.FC = () => {
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
-
+  
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
@@ -58,10 +59,9 @@ const GameboardOne: React.FC = () => {
         && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
         && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
-      // make green checkmark
-      setIsDropdownVisible(false);
       const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
       setTemptCharacters(updatedCharacters);
+      setIsDropdownVisible(false);
     } else {
       setIsDropdownVisible(false);
     }
@@ -99,15 +99,18 @@ const GameboardOne: React.FC = () => {
         <KeyWrapper>
           <div className="characters">
             <p>Alice</p>
-            <img src={Alice} alt="Dark skinned woman" />
+            <img src={Alice} className="character" alt="Dark skinned woman" />
+            {!temptCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
             <p>Tinbird</p>
-            <img src={TinBird} alt="Bird in knight's helmet" />
+            <img src={TinBird} className="character" alt="Bird in knight's helmet" />
+            {!temptCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
             <p>Frank</p>
-            <img src={Frank} alt="Shadowy hooded figure" />
+            <img src={Frank} className="character" alt="Shadowy hooded figure" />
+            {!temptCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
         </KeyWrapper>
       </InfoWrapper>
@@ -122,6 +125,7 @@ const GameboardOne: React.FC = () => {
             y={dropdownLocation.y}
             handleCloseClick={handleCloseClick}
             handleDropImageClick={handleDropImageClick}
+            temptCharacters={temptCharacters}
           />
         )}
       </ImageWrapper>
@@ -191,7 +195,14 @@ const KeyWrapper = styled.div`
     border-radius: 50%;
     width: 30px;
     margin: 0px;
-    border: 1px solid white;
+  }
+
+  .character {
+    position: fixed;
+  }
+
+  .checkmark {
+    position: relative;
   }
 
   p {
