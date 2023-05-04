@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// StartGameModal.tsx
+
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
