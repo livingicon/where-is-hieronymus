@@ -121,7 +121,9 @@ const GameboardOne: React.FC = () => {
           />
         )}
       </ImageWrapper>
-      <LeaderboardFormModal />
+      {temptCharacters.length === 0 && (
+        <LeaderboardFormModal />
+      )}
     </GameboardOneContainer>
   );
 };

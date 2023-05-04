@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Alice from "../images/TemptAlice.png";
 import TinBird from "../images/TemptTinBird.png";
