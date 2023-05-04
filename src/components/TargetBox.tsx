@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Alice from "../images/TemptAlice.png";
 import TinBird from "../images/TemptTinBird.png";
@@ -22,7 +22,7 @@ const TargetBox: React.FC<TargetBoxProps> = ({
 }) => { 
   
   return (
-    <DropdownWrapper x={x} y={y}>
+    <DropdownWrapper x={x} y={y} >
       <div className="character-container">
         <img src={Alice} alt="Alice" className="character" onClick={handleDropImageClick}/>
         {!temptCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
@@ -43,8 +43,8 @@ const TargetBox: React.FC<TargetBoxProps> = ({
 const DropdownWrapper = styled.div<{ x: number; y: number }>`
   position: absolute;
   display: grid;
-  top: ${({ y }) => y + 50}px;
-  left: ${({ x }) => x - 33}px;
+  top: ${({ y }) => y + 48}px;
+  left: ${({ x }) => x - 39}px;
   background-color: white;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
   padding: 8px;
@@ -68,7 +68,7 @@ const DropdownWrapper = styled.div<{ x: number; y: number }>`
     height: 51.48px;
     border-radius: 50%;
   }
-
+  
   .character: hover {
     transform: scale(1.1);
   }
