@@ -1,42 +1,68 @@
 // LeaderboardFormModal.tsx
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import firebase from "firebase/app";
+import "firebase/database";
 
 interface LeaderboardModalProps {
   time: number;
 }
 
 const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => { 
-  
+  const [name, setName] = useState("");
+
   const formatTime = (timeInSeconds: number): string => {
-    const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
-    const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
-    const seconds = Math.floor(timeInSeconds % 60).toString().padStart(2, '0');
+    const hours = Math.floor(timeInSeconds / 3600)
+      .toString()
+      .padStart(2, "0");
+    const minutes = Math.floor((timeInSeconds % 3600) / 60)
+      .toString()
+      .padStart(2, "0");
+    const seconds = Math.floor(timeInSeconds % 60)
+      .toString()
+      .padStart(2, "0");
     return `${hours}:${minutes}:${seconds}`;
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleRegisterClick = () => {
+    const db = firebase.database();
+    const leaderboardRef = db.ref("leaderboard");
+
+    leaderboardRef.push({
+      name,
+      time,
+    });
   };
 
   return (
   <LeaderboardFormWrapper>
     <section>
-      <h2>Register Time for Leaderboard</h2>
+      <h2>Register Your Time for The Leaderboard</h2>
       <p>Time: {formatTime(time)}</p>
       <form>
-        <label htmlFor="school">Name</label>
+        <label htmlFor="name">Name</label>
         <input 
-          type="text" 
-          id="school" 
-          name={'time'}
+          type="text"
+          id="name"
           autoComplete="off"
+          value={name}
+          onChange={handleNameChange}
         />
       </form>
-      <Link to="/leaderboard">
-        <button>Leaderboard</button>
-      </Link>
-      <Link to="/">
-        <button>Gameboards</button>
-      </Link>
+      <div className="buttons">
+        <Link to="/leaderboard">
+          <button onClick={handleRegisterClick}>Register</button>
+        </Link>
+        <Link to="/">
+          <button>Cancel</button>
+        </Link>
+      </div>
     </section>
   </LeaderboardFormWrapper>
   );
