@@ -1,3 +1,5 @@
+// TargetBox.tsx
+
 import React from "react";
 import styled from "styled-components";
 import Alice from "../images/TemptAlice.png";
@@ -40,7 +42,7 @@ const TargetBox: React.FC<TargetBoxProps> = ({
   );
 };
 
-const DropdownWrapper = styled.div<{ x: number; y: number }>`
+const DropdownWrapper = styled.div<{ x: number; y: number;}>`
   position: absolute;
   display: grid;
   top: ${({ y }) => y + 48}px;

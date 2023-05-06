@@ -58,11 +58,11 @@ const NavWrapper = styled.div`
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding-right: 10px;
   }
 
   li {
-    margin: 0 10px;
+    margin: 10px;
   }
 
   a {

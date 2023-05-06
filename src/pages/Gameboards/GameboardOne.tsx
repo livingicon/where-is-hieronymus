@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Temptation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
 import TinBird from "../../images/TemptTinBird.png";
@@ -20,7 +20,8 @@ const GameboardOne: React.FC = () => {
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
-
+  const [fadeOut, setFadeOut] = useState(false);
+  
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
@@ -63,15 +64,18 @@ const GameboardOne: React.FC = () => {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
       setTemptCharacters(updatedCharacters);
-      setIsDropdownVisible(false);
+      setTimeout(() => {
+        setIsDropdownVisible(false);
+      }, 500);
     } else {
       setIsDropdownVisible(false);
     }
   }
 
-  const handleCloseClick = (): void => {
+  const handleCloseClick = () => {
+    // Wait a short delay before setting fadeOut to true
     setIsDropdownVisible(false);
-  };
+  }
 
   return (
     <GameboardOneContainer>
