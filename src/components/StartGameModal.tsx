@@ -13,7 +13,7 @@ const StartGameModal: React.FC<StartGameModalProps> = ({ setIsVisible, startTime
   
   return (
   <StartGameModalWrapper>
-    <section className="modal-main">
+    <section>
       <h2>Instructions</h2>
       <p>Your task is to find the following three characters in this painting. 
         When you click one of the characters in the painting a dropdown will open 

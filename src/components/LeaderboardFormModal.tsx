@@ -1,21 +1,42 @@
 // LeaderboardFormModal.tsx
 
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface LeaderboardModalProps {
-  // setIsVisible: (isVisible: boolean) => void;
-  // startTimer: () => void;
+  time: number;
 }
 
-const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({}) => { 
+const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => { 
   
+  const formatTime = (timeInSeconds: number): string => {
+    const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
+    const seconds = Math.floor(timeInSeconds % 60).toString().padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+  };
+
   return (
   <LeaderboardFormWrapper>
-    <section className="modal-main">
-      <h2>Register Time with Leaderboard</h2>
-      <p>THIS WILL BE A FORM</p>
+    <section>
+      <h2>Register Time for Leaderboard</h2>
+      <p>Time: {formatTime(time)}</p>
+      <form>
+        <label htmlFor="school">Name</label>
+        <input 
+          type="text" 
+          id="school" 
+          name={'time'}
+          autoComplete="off"
+        />
+      </form>
+      <Link to="/leaderboard">
+        <button>Leaderboard</button>
+      </Link>
+      <Link to="/">
+        <button>Gameboards</button>
+      </Link>
     </section>
   </LeaderboardFormWrapper>
   );
@@ -23,7 +44,7 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({}) => {
 
 const LeaderboardFormWrapper = styled.div`
   z-index: 2;
-  display: flex;  
+  display: grid;  
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -31,6 +52,7 @@ const LeaderboardFormWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  color: white;
   background-color: rgba(0, 0, 0, 0.85);
 
   section {

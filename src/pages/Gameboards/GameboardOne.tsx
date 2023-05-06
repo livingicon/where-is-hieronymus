@@ -20,7 +20,7 @@ const GameboardOne: React.FC = () => {
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
-  const [fadeOut, setFadeOut] = useState(false);
+  const [time, setTime] = useState<number>(0);
   
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
@@ -29,10 +29,9 @@ const GameboardOne: React.FC = () => {
   useEffect(() => {
     if (temptCharacters.length === 0) {
       console.log("game over!");
-      setIsTimerStarted(false); // Stop the timer
-      const time = counter; // Save the current counter value as the time
-      console.log(`Time taken: ${time} seconds`);
-      // launch register for leaderboard
+      setIsTimerStarted(false);
+      setTime(counter);
+      console.log(`Time taken: ${counter} seconds`);
     }
   }, [temptCharacters, counter]);
 
@@ -66,14 +65,13 @@ const GameboardOne: React.FC = () => {
       setTemptCharacters(updatedCharacters);
       setTimeout(() => {
         setIsDropdownVisible(false);
-      }, 500);
+      }, 300);
     } else {
       setIsDropdownVisible(false);
     }
   }
 
   const handleCloseClick = () => {
-    // Wait a short delay before setting fadeOut to true
     setIsDropdownVisible(false);
   }
 
@@ -126,7 +124,9 @@ const GameboardOne: React.FC = () => {
         )}
       </ImageWrapper>
       {temptCharacters.length === 0 && (
-        <LeaderboardFormModal />
+        <LeaderboardFormModal 
+          time={time}
+        />
       )}
     </GameboardOneContainer>
   );
