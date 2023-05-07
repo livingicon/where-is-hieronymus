@@ -1,8 +1,7 @@
 // GameboardOne.tsx
 
 import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import Temptation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
 import TinBird from "../../images/TemptTinBird.png";
@@ -177,7 +176,7 @@ const KeyWrapper = styled.div`
 const ImageWrapper = styled.div`
   position: relative; // without the dropdown is too high
 `;
-// change so that you can zoom all the way in and click to drag image
+// change so that you can zoom all the way in and click to drag image?
 const Image = styled.img`
   width: 1000px;
   margin-top: 15px; 

@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-// import { initializeApp } from "firebase/app";
-// import { getFirestore, collection, addDoc } from "firebase/firestore";
 import db from "../config/config";
 import { collection, addDoc } from 'firebase/firestore';
 
@@ -36,8 +34,8 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => {
   const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const timeString = formatTime(time);
-    console.log("name: ", name);
-    console.log("time: ", timeString);
+    // console.log("name: ", name);
+    // console.log("time: ", timeString);
     try {
       const docRef = await addDoc(collection(db, "leaderboard"), { name, time: timeString });
       console.log("Document written with ID: ", docRef.id);
