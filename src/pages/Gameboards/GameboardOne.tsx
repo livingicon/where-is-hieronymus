@@ -29,10 +29,10 @@ const GameboardOne: React.FC = () => {
 
   useEffect(() => {
     if (temptCharacters.length === 0) {
-      console.log("game over!");
+      // console.log("game over!");
       setIsTimerStarted(false);
       setTime(counter);
-      console.log(`Time taken: ${counter} seconds`);
+      // console.log(`Time taken: ${counter} seconds`);
     }
   }, [temptCharacters, counter]);
 

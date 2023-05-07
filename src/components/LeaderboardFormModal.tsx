@@ -1,7 +1,7 @@
 // LeaderboardFormModal.tsx
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import { initializeApp } from "firebase/app";
 // import { getFirestore, collection, addDoc } from "firebase/firestore";
@@ -14,9 +14,7 @@ interface LeaderboardModalProps {
 
 const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => { 
   const [name, setName] = useState("");
-  // const [values, setValues] = useState({ name: "", time: "" });
-  // const [values, setValues] = useState<{ [key: string]: string }>({ name: "", time: "" });
-  
+  const navigate = useNavigate();
 
   const formatTime = (timeInSeconds: number): string => {
     const hours = Math.floor(timeInSeconds / 3600)
@@ -38,41 +36,41 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => {
   const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const timeString = formatTime(time);
+    console.log("name: ", name);
+    console.log("time: ", timeString);
     try {
       const docRef = await addDoc(collection(db, "leaderboard"), { name, time: timeString });
       console.log("Document written with ID: ", docRef.id);
       setName("");
+      navigate("/leaderboard"); 
     } catch (error) {
       console.error("Error adding document: ", error);
     }
   };
 
-
   return (
-  <LeaderboardFormWrapper>
-    <section>
-      <h2>Register Your Time for The Leaderboard</h2>
-      <p>Time: {formatTime(time)}</p>
-      <form onSubmit={handleRegisterSubmit}>
-        <label htmlFor="name">Name</label>
-        <input 
-          type="text"
-          id="name"
-          autoComplete="off"
-          value={name}
-          onChange={handleNameChange}
-        />
-      </form>
-      <div className="buttons">
-        <Link to="/leaderboard">
-          <button type="submit">Register</button>
-        </Link>
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
-      </div>
-    </section>
-  </LeaderboardFormWrapper>
+    <LeaderboardFormWrapper>
+      <section>
+        <h2>Register Your Time for The Leaderboard</h2>
+        <p>Time: {formatTime(time)}</p>
+        <form onSubmit={handleRegisterSubmit}>
+          <label htmlFor="name">Name</label>
+          <input 
+            type="text"
+            id="name"
+            autoComplete="off"
+            value={name}
+            onChange={handleNameChange}
+          />
+          <div className="buttons">
+            <button type="submit">Register</button>
+            <Link to="/">
+              <button>Cancel</button>
+            </Link>
+          </div>
+        </form>
+      </section>
+    </LeaderboardFormWrapper>
   );
 };
 
