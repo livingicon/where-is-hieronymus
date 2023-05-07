@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import firebase from "firebase/app";
-import "firebase/database";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { app, db } from "../config/config";
 
 interface LeaderboardModalProps {
   time: number;
@@ -12,6 +13,9 @@ interface LeaderboardModalProps {
 
 const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => { 
   const [name, setName] = useState("");
+  // const [values, setValues] = useState({ name: "", time: "" });
+  // const [values, setValues] = useState<{ [key: string]: string }>({ name: "", time: "" });
+  
 
   const formatTime = (timeInSeconds: number): string => {
     const hours = Math.floor(timeInSeconds / 3600)
@@ -26,26 +30,29 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => {
     return `${hours}:${minutes}:${seconds}`;
   };
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setName(e.target.value);
   };
 
-  const handleRegisterClick = () => {
-    const db = firebase.database();
-    const leaderboardRef = db.ref("leaderboard");
-
-    leaderboardRef.push({
-      name,
-      time,
-    });
+  const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+    const timeString = formatTime(time);
+    try {
+      const docRef = await addDoc(collection(db, "leaderboard"), { name, time: timeString });
+      console.log("Document written with ID: ", docRef.id);
+      setName("");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
+
 
   return (
   <LeaderboardFormWrapper>
     <section>
       <h2>Register Your Time for The Leaderboard</h2>
       <p>Time: {formatTime(time)}</p>
-      <form>
+      <form onSubmit={handleRegisterSubmit}>
         <label htmlFor="name">Name</label>
         <input 
           type="text"
@@ -57,7 +64,7 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => {
       </form>
       <div className="buttons">
         <Link to="/leaderboard">
-          <button onClick={handleRegisterClick}>Register</button>
+          <button type="submit">Register</button>
         </Link>
         <Link to="/">
           <button>Cancel</button>
