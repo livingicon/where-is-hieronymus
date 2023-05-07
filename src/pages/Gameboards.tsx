@@ -11,7 +11,7 @@ const Gameboards: React.FC = () => {
 
   return (
     <GameboardsContainer>
-      <p>Click a Hieronymus Bosch painting to go to it's gameboard.</p>
+      <p>Click a Hieronymus Bosch painting to search for three of it's characters.</p>
       <GameboardImages>
         <Link to="/the-temptation-of-saint-anthony">
           <Image src={TemptAnthony} alt="The Temptation of Saint Anthony Painting" />

@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { app, db } from "../config/config";
+// import { initializeApp } from "firebase/app";
+// import { getFirestore, collection, addDoc } from "firebase/firestore";
+import db from "../config/config";
+import { collection, addDoc } from 'firebase/firestore';
 
 interface LeaderboardModalProps {
   time: number;
