@@ -58,8 +58,8 @@ const GameboardOne: React.FC = () => {
       && dropdownLocation.x <= tinBirdBox.right && dropdownLocation.y >= tinBirdBox.top 
       && dropdownLocation.y <= tinBirdBox.bottom && e.currentTarget.alt === 'TinBird')
       || (dropdownLocation && dropdownLocation.x >= frankBox.left 
-        && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
-        && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
+      && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
+      && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
       setTemptCharacters(updatedCharacters);
