@@ -21,7 +21,6 @@ const GameboardOne: React.FC = () => {
   const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
   const [time, setTime] = useState<number>(0);
   
-  // THIS INFO NEEDS MOVED TO FIREBASE AND ACCESSED FROM THERE?
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
@@ -121,7 +120,7 @@ const GameboardOne: React.FC = () => {
             y={dropdownLocation.y}
             handleCloseClick={handleCloseClick}
             handleDropImageClick={handleDropImageClick}
-            temptCharacters={temptCharacters}
+            characters={characters}
           />
         )}
       </ImageWrapper>

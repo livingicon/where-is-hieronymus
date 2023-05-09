@@ -12,7 +12,7 @@ interface TargetBoxProps {
   y: number;
   handleCloseClick: () => void;
   handleDropImageClick: (e: React.MouseEvent<HTMLImageElement>) => void;
-  temptCharacters: string[];
+  characters: any[][];
 }
 
 const TargetBox: React.FC<TargetBoxProps> = ({ 
@@ -20,23 +20,21 @@ const TargetBox: React.FC<TargetBoxProps> = ({
   y, 
   handleCloseClick, 
   handleDropImageClick,
-  temptCharacters,
+  characters,
 }) => { 
   
   return (
     <DropdownWrapper x={x} y={y} >
-      <div className="character-container">
-        <img src={Alice} alt="Alice" className="character" onClick={handleDropImageClick}/>
-        {!temptCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
-      </div>
-      <div className="character-container">
-        <img src={TinBird} alt="TinBird" className="character" onClick={handleDropImageClick}/>
-        {!temptCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
-      </div>
-      <div className="character-container">
-        <img src={Frank} alt="Frank" className="character" onClick={handleDropImageClick}/>
-        {!temptCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
-      </div>
+      {characters.map(([name, imagePath]) => (
+        <div className="character-container" key={name}>
+          <img
+            src={imagePath}
+            alt={name}
+            className="character"
+            onClick={handleDropImageClick}
+          />
+        </div>
+      ))}
       <button onClick={handleCloseClick}>CLOSE</button>
     </DropdownWrapper>
   );
