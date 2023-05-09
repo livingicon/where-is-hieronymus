@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-import Temptation from '../../images/temptation_of_saint_anthony.jpg';
+import remainingation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
-import TinBird from "../../images/TemptTinBird.png";
+import Tinbird from "../../images/TemptTinbird.png";
 import Frank from "../../images/TemptFrank.png";
 import checkmark from "../../images/checkmark.png";
 import Timer from "../../components/Timer";
@@ -18,22 +18,22 @@ const GameboardOne: React.FC = () => {
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const [temptCharacters, setTemptCharacters] = useState(["Alice", "TinBird", "Frank"]);
+  const [remainingCharacters, setremainingCharacters] = useState(["Alice", "Tinbird", "Frank"]);
   const [time, setTime] = useState<number>(0);
   
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
-  const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
+  const tinbirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
-  const characters = [["Alice", Alice], ["Tinbird", TinBird], ["Frank", Frank]];
+  const characters = [["Alice", Alice], ["Tinbird", Tinbird], ["Frank", Frank]];
 
   useEffect(() => {
-    if (temptCharacters.length === 0) {
+    if (remainingCharacters.length === 0) {
       // console.log("game over!");
       setIsTimerStarted(false);
       setTime(counter);
       // console.log(`Time taken: ${counter} seconds`);
     }
-  }, [temptCharacters, counter]);
+  }, [remainingCharacters, counter]);
 
   const startTimer = (): void => {
     setIsVisible(false);
@@ -54,15 +54,15 @@ const GameboardOne: React.FC = () => {
     if ((dropdownLocation && dropdownLocation.x >= aliceBox.left 
       && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
       && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice')
-      || (dropdownLocation && dropdownLocation.x >= tinBirdBox.left 
-      && dropdownLocation.x <= tinBirdBox.right && dropdownLocation.y >= tinBirdBox.top 
-      && dropdownLocation.y <= tinBirdBox.bottom && e.currentTarget.alt === 'TinBird')
+      || (dropdownLocation && dropdownLocation.x >= tinbirdBox.left 
+      && dropdownLocation.x <= tinbirdBox.right && dropdownLocation.y >= tinbirdBox.top 
+      && dropdownLocation.y <= tinbirdBox.bottom && e.currentTarget.alt === 'Tinbird')
       || (dropdownLocation && dropdownLocation.x >= frankBox.left 
       && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
       && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
-      const updatedCharacters = temptCharacters.filter((char) => char !== e.currentTarget.alt);
-      setTemptCharacters(updatedCharacters);
+      const updatedCharacters = remainingCharacters.filter((char) => char !== e.currentTarget.alt);
+      setremainingCharacters(updatedCharacters);
       setTimeout(() => {
         setIsDropdownVisible(false);
       }, 300);
@@ -95,23 +95,23 @@ const GameboardOne: React.FC = () => {
           <div className="characters">
             <p>Alice</p>
             <img src={Alice} className="character" alt="Dark skinned woman" />
-            {!temptCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
             <p>Tinbird</p>
-            <img src={TinBird} className="character" alt="Bird in knight's helmet" />
-            {!temptCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            <img src={Tinbird} className="character" alt="Bird in knight's helmet" />
+            {!remainingCharacters.includes('Tinbird') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
             <p>Frank</p>
             <img src={Frank} className="character" alt="Shadowy hooded figure" />
-            {!temptCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
         </KeyWrapper>
       </InfoWrapper>
       <ImageWrapper>
         <Image 
-          src={Temptation} 
+          src={remainingation} 
           onClick={handleImageClick}
         />
         {isDropdownVisible && dropdownLocation && (
@@ -121,10 +121,11 @@ const GameboardOne: React.FC = () => {
             handleCloseClick={handleCloseClick}
             handleDropImageClick={handleDropImageClick}
             characters={characters}
+            remainingCharacters={remainingCharacters}
           />
         )}
       </ImageWrapper>
-      {temptCharacters.length === 0 && (
+      {remainingCharacters.length === 0 && (
         <LeaderboardFormModal 
           time={time}
         />

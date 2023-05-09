@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-import Temptation from '../../images/temptation_of_saint_anthony.jpg';
+import Garden from '../../images/the-garden-of-earthly-delights.png';
 import Sk8r from "../../images/GardenSk8r.png";
 import Peter from "../../images/GardenPeter.png";
 import Bugsy from "../../images/GardenBugsy.png";
@@ -18,7 +18,7 @@ const GameboardTwo: React.FC = () => {
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const [gardenCharacters, setGardenCharacters] = useState(["sk8r", "Peter", "Bugsy"]);
+  const [remainingCharacters, setremainingCharacters] = useState(["sk8r", "Peter", "Bugsy"]);
   const [time, setTime] = useState<number>(0);
   
   // CHANGE!!
@@ -28,13 +28,13 @@ const GameboardTwo: React.FC = () => {
   const characters = [["Sk8r", Sk8r], ["Peter", Peter], ["Bugsy", Bugsy]];
 
   useEffect(() => {
-    if (gardenCharacters.length === 0) {
+    if (remainingCharacters.length === 0) {
       // console.log("game over!");
       setIsTimerStarted(false);
       setTime(counter);
       // console.log(`Time taken: ${counter} seconds`);
     }
-  }, [gardenCharacters, counter]);
+  }, [remainingCharacters, counter]);
 
   const startTimer = (): void => {
     setIsVisible(false);
@@ -63,8 +63,8 @@ const GameboardTwo: React.FC = () => {
       && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
       && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
-      const updatedCharacters = gardenCharacters.filter((char) => char !== e.currentTarget.alt);
-      setGardenCharacters(updatedCharacters);
+      const updatedCharacters = remainingCharacters.filter((char) => char !== e.currentTarget.alt);
+      setremainingCharacters(updatedCharacters);
       setTimeout(() => {
         setIsDropdownVisible(false);
       }, 300);
@@ -97,23 +97,23 @@ const GameboardTwo: React.FC = () => {
           <div className="characters">
             <p>Alice</p>
             <img src={Sk8r} className="character" alt="skating penguin" />
-            {!gardenCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
             <p>Tinbird</p>
             <img src={Peter} className="character" alt="rabbit" />
-            {!gardenCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
             <p>Frank</p>
             <img src={Bugsy} className="character" alt="blue beetle" />
-            {!gardenCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
         </KeyWrapper>
       </InfoWrapper>
       <ImageWrapper>
         <Image 
-          src={Temptation} 
+          src={Garden} 
           onClick={handleImageClick}
         />
         {isDropdownVisible && dropdownLocation && (
@@ -123,10 +123,11 @@ const GameboardTwo: React.FC = () => {
             handleCloseClick={handleCloseClick}
             handleDropImageClick={handleDropImageClick}
             characters={characters}
+            remainingCharacters={remainingCharacters}
           />
         )}
       </ImageWrapper>
-      {gardenCharacters.length === 0 && (
+      {remainingCharacters.length === 0 && (
         <LeaderboardFormModal 
           time={time}
         />

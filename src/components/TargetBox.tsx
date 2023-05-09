@@ -2,9 +2,9 @@
 
 import React from "react";
 import styled from "styled-components";
-import Alice from "../images/TemptAlice.png";
-import TinBird from "../images/TemptTinBird.png";
-import Frank from "../images/TemptFrank.png";
+// import Alice from "../images/TemptAlice.png";
+// import TinBird from "../images/TemptTinBird.png";
+// import Frank from "../images/TemptFrank.png";
 import checkmark from "../images/checkmark.png";
 
 interface TargetBoxProps {
@@ -13,6 +13,7 @@ interface TargetBoxProps {
   handleCloseClick: () => void;
   handleDropImageClick: (e: React.MouseEvent<HTMLImageElement>) => void;
   characters: any[][];
+  remainingCharacters: string[];
 }
 
 const TargetBox: React.FC<TargetBoxProps> = ({ 
@@ -21,6 +22,7 @@ const TargetBox: React.FC<TargetBoxProps> = ({
   handleCloseClick, 
   handleDropImageClick,
   characters,
+  remainingCharacters,
 }) => { 
   
   return (
@@ -33,6 +35,7 @@ const TargetBox: React.FC<TargetBoxProps> = ({
             className="character"
             onClick={handleDropImageClick}
           />
+          {!remainingCharacters.includes(name) && <img src={checkmark} alt="check mark" className="checkmark" />}
         </div>
       ))}
       <button onClick={handleCloseClick}>CLOSE</button>
