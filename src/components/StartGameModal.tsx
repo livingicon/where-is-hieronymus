@@ -3,16 +3,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Alice from "../images/TemptAlice.png";
-import TinBird from "../images/TemptTinBird.png";
-import Frank from "../images/TemptFrank.png";
 
 interface StartGameModalProps {
   setIsVisible: (isVisible: boolean) => void;
   startTimer: () => void;
+  characters: any[][];
 }
 
-const StartGameModal: React.FC<StartGameModalProps> = ({ setIsVisible, startTimer }) => { 
+const StartGameModal: React.FC<StartGameModalProps> = ({ setIsVisible, startTimer, characters }) => { 
   
   return (
   <StartGameModalWrapper>
@@ -22,18 +20,12 @@ const StartGameModal: React.FC<StartGameModalProps> = ({ setIsVisible, startTime
       </div>
       <p>Your task is to find the following three characters in this painting:</p>
       <div className="characters">
-        <div className="character">
-          <p>Alice</p>
-          <img src={Alice} className="character" alt="Dark skinned woman" />
+      {characters.map((character, index) => (
+        <div className="character" key={index}>
+          <p>{character[0]}</p>
+          <img src={character[1]} className="character" alt={character[0]} />
         </div>
-        <div className="character">
-          <p>Tinbird</p>
-          <img src={TinBird} className="character" alt="Bird in knight's helmet" />
-        </div>
-        <div className="character">
-          <p>Frank</p>
-          <img src={Frank} className="character" alt="Shadowy hooded figure" />
-        </div>
+      ))}
       </div>
       <p>When you click one of the characters in the painting a dropdown will open 
         showing the available characters and you will click on the one you have found.

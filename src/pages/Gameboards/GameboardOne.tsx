@@ -25,6 +25,7 @@ const GameboardOne: React.FC = () => {
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
+  const characters = [["Alice", Alice], ["Tinbird", TinBird], ["Frank", Frank]];
 
   useEffect(() => {
     if (temptCharacters.length === 0) {
@@ -81,6 +82,7 @@ const GameboardOne: React.FC = () => {
         <StartGameModal
           setIsVisible={setIsVisible}
           startTimer={startTimer}
+          characters={characters}
         />
       }
       <InfoWrapper>
