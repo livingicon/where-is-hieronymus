@@ -42,22 +42,25 @@ const TargetBox: React.FC<TargetBoxProps> = ({
 
 const DropdownWrapper = styled.div<{ x: number; y: number;}>`
   position: absolute;
-  display: grid;
-  top: ${({ y }) => y + 48}px;
-  left: ${({ x }) => x - 39}px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: ${({ y }) => y + 49}px;
+  left: ${({ x }) => x - 38}px;
   background-color: white;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
   padding: 8px;
+  border-radius: 8px;
 
   // triangle pointing up
   &::before {
     content: "";
     position: absolute;
-    top: -23px;
+    top: -22px;
     left: 50%;
     transform: translateX(-50%) rotate(45deg);
-    width: 46px;
-    height: 46px;
+    width: 53px;
+    height: 53px;
     background-color: white;
   }
 
@@ -83,6 +86,18 @@ const DropdownWrapper = styled.div<{ x: number; y: number;}>`
     left: 2px;
     width: 45px;
     height: 47px;
+  }
+
+  button {
+    width: 60px;
+    padding: 5px;
+    background-color: #ca8a04;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px #333;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
