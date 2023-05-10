@@ -32,19 +32,6 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time, gameBoard
     setName(e.target.value);
   };
 
-  // const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-  //   e.preventDefault();
-  //   const timeString = formatTime(time);
-  //   try {
-  //     const docRef = await addDoc(collection(db, "leaderboard"), { name, time: timeString });
-  //     console.log("Document written with ID: ", docRef.id);
-  //     setName("");
-  //     navigate("/leaderboard"); 
-  //   } catch (error) {
-  //     console.error("Error adding document: ", error);
-  //   }
-  // };
-
   const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const timeString = formatTime(time);
