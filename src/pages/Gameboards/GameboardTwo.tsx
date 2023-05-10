@@ -18,13 +18,13 @@ const GameboardTwo: React.FC = () => {
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const [remainingCharacters, setremainingCharacters] = useState(["sk8r", "Peter", "Bugsy"]);
+  const [remainingCharacters, setRemainingCharacters] = useState(["Sk8r", "Peter", "Bugsy"]);
   const [time, setTime] = useState<number>(0);
   
   // CHANGE!!
-  const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
-  const tinBirdBox = {left: 714, right: 730, top: 283, bottom: 305};
-  const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
+  const Sk8rBox = {left: 948, right: 980, top: 318, bottom: 338};
+  const PeterBox = {left: 850, right: 874, top: 422, bottom: 460};
+  const BugsyBox = {left: 197, right: 214, top: 250, bottom: 267};
   const characters = [["Sk8r", Sk8r], ["Peter", Peter], ["Bugsy", Bugsy]];
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const GameboardTwo: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
+    console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 
@@ -53,18 +54,18 @@ const GameboardTwo: React.FC = () => {
 
   // CHANGE!!
   const handleDropImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    if ((dropdownLocation && dropdownLocation.x >= aliceBox.left 
-      && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
-      && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice')
-      || (dropdownLocation && dropdownLocation.x >= tinBirdBox.left 
-      && dropdownLocation.x <= tinBirdBox.right && dropdownLocation.y >= tinBirdBox.top 
-      && dropdownLocation.y <= tinBirdBox.bottom && e.currentTarget.alt === 'TinBird')
-      || (dropdownLocation && dropdownLocation.x >= frankBox.left 
-      && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
-      && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
-      //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
+    if ((dropdownLocation && dropdownLocation.x >= Sk8rBox.left 
+      && dropdownLocation.x <= Sk8rBox.right && dropdownLocation.y >= Sk8rBox.top 
+      && dropdownLocation.y <= Sk8rBox.bottom && e.currentTarget.alt === 'Sk8r')
+      || (dropdownLocation && dropdownLocation.x >= PeterBox.left 
+      && dropdownLocation.x <= PeterBox.right && dropdownLocation.y >= PeterBox.top 
+      && dropdownLocation.y <= PeterBox.bottom && e.currentTarget.alt === 'Peter')
+      || (dropdownLocation && dropdownLocation.x >= BugsyBox.left 
+      && dropdownLocation.x <= BugsyBox.right && dropdownLocation.y >= BugsyBox.top 
+      && dropdownLocation.y <= BugsyBox.bottom && e.currentTarget.alt === 'Bugsy')) {
+      // console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       const updatedCharacters = remainingCharacters.filter((char) => char !== e.currentTarget.alt);
-      setremainingCharacters(updatedCharacters);
+      setRemainingCharacters(updatedCharacters);
       setTimeout(() => {
         setIsDropdownVisible(false);
       }, 300);
@@ -95,19 +96,19 @@ const GameboardTwo: React.FC = () => {
         )}
         <KeyWrapper>
           <div className="characters">
-            <p>Alice</p>
+            <p>Sk8r</p>
             <img src={Sk8r} className="character" alt="skating penguin" />
-            {!remainingCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Sk8r') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
-            <p>Tinbird</p>
+            <p>Peter</p>
             <img src={Peter} className="character" alt="rabbit" />
-            {!remainingCharacters.includes('TinBird') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Peter') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
           <div className="characters">
-            <p>Frank</p>
+            <p>Bugsy</p>
             <img src={Bugsy} className="character" alt="blue beetle" />
-            {!remainingCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
+            {!remainingCharacters.includes('Bugsy') && <img src={checkmark} alt="check mark" className="checkmark" />}
           </div>
         </KeyWrapper>
       </InfoWrapper>

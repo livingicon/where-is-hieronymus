@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-import remainingation from '../../images/temptation_of_saint_anthony.jpg';
+import temptation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
 import Tinbird from "../../images/TemptTinbird.png";
 import Frank from "../../images/TemptFrank.png";
@@ -18,7 +18,7 @@ const GameboardOne: React.FC = () => {
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const [remainingCharacters, setremainingCharacters] = useState(["Alice", "Tinbird", "Frank"]);
+  const [remainingCharacters, setRemainingCharacters] = useState(["Alice", "Tinbird", "Frank"]);
   const [time, setTime] = useState<number>(0);
   
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
@@ -62,7 +62,7 @@ const GameboardOne: React.FC = () => {
       && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
       //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       const updatedCharacters = remainingCharacters.filter((char) => char !== e.currentTarget.alt);
-      setremainingCharacters(updatedCharacters);
+      setRemainingCharacters(updatedCharacters);
       setTimeout(() => {
         setIsDropdownVisible(false);
       }, 300);
@@ -111,7 +111,7 @@ const GameboardOne: React.FC = () => {
       </InfoWrapper>
       <ImageWrapper>
         <Image 
-          src={remainingation} 
+          src={temptation} 
           onClick={handleImageClick}
         />
         {isDropdownVisible && dropdownLocation && (
