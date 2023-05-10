@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import TemptAnthony from "../images/temptation_of_saint_anthony.jpg";
 import GardenDelights from "../images/the-garden-of-earthly-delights.png";
-import LastJudgement from "../images/the-last-judgement.jpg";
+import LastJudgement from "../images/the-last-judgment.png";
 
 const Gameboards: React.FC = () => {
 
