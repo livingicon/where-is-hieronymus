@@ -151,14 +151,18 @@ const InfoWrapper = styled.div`
   z-index: 1;
   top: 3%;
   left: 3%;
-  width: 150px;
+  width: 160px;
   height: 75px;
   background-color: black;
   color: white;
+  border-radius: 5px;
+  padding: 5px;
 `;
 
 const KeyWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+
 
   img {
     border-radius: 50%;
@@ -166,21 +170,31 @@ const KeyWrapper = styled.div`
     margin: 0px;
   }
 
+  .characters {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .character {
-    position: fixed;
+    position: relative;
   }
 
   .checkmark {
-    position: relative;
+    position: absolute;
+    top: 18px;
   }
 
   p {
     margin: 0;
   }
 `;
+
 const ImageWrapper = styled.div`
   position: relative; // without the dropdown is too high
 `;
+
 // change so that you can zoom all the way in and click to drag image?
 const Image = styled.img`
   width: 1000px;
