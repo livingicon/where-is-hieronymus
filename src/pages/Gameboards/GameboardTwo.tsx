@@ -45,7 +45,7 @@ const GameboardTwo: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    console.log(`Clicked at location: (${x}, ${y})`);
+    // console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 

@@ -22,9 +22,9 @@ const GameboardThree: React.FC = () => {
   const [time, setTime] = useState<number>(0);
   
   // CHANGE!!
-  const FeliciaBox = {left: 948, right: 980, top: 318, bottom: 338};
-  const HatterBox = {left: 850, right: 874, top: 422, bottom: 460};
-  const ClawsBox = {left: 197, right: 214, top: 250, bottom: 267};
+  const FeliciaBox = {left: 634, right: 654, top: 337, bottom: 354};
+  const HatterBox = {left: 907, right: 930, top: 516, bottom: 541};
+  const ClawsBox = {left: 246, right: 275, top: 566, bottom: 589};
   const characters = [["Felicia", Felicia], ["Hatter", Hatter], ["Claws", Claws]];
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const GameboardThree: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    console.log(`Clicked at location: (${x}, ${y})`);
+    // console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 
