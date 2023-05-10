@@ -25,6 +25,7 @@ const GameboardOne: React.FC = () => {
   const tinbirdBox = {left: 714, right: 730, top: 283, bottom: 305};
   const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
   const characters = [["Alice", Alice], ["Tinbird", Tinbird], ["Frank", Frank]];
+  const gameBoard = 1;
 
   useEffect(() => {
     if (remainingCharacters.length === 0) {
@@ -128,6 +129,7 @@ const GameboardOne: React.FC = () => {
       {remainingCharacters.length === 0 && (
         <LeaderboardFormModal 
           time={time}
+          gameBoard={gameBoard} // HERE!!
         />
       )}
     </GameboardOneContainer>

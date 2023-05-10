@@ -26,6 +26,7 @@ const GameboardTwo: React.FC = () => {
   const PeterBox = {left: 850, right: 874, top: 422, bottom: 460};
   const BugsyBox = {left: 197, right: 214, top: 250, bottom: 267};
   const characters = [["Sk8r", Sk8r], ["Peter", Peter], ["Bugsy", Bugsy]];
+  const gameBoard = 2;
 
   useEffect(() => {
     if (remainingCharacters.length === 0) {
@@ -131,6 +132,7 @@ const GameboardTwo: React.FC = () => {
       {remainingCharacters.length === 0 && (
         <LeaderboardFormModal 
           time={time}
+          gameBoard={gameBoard}
         />
       )}
     </GameboardTwoContainer>

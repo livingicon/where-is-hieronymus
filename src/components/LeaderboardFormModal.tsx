@@ -8,9 +8,10 @@ import { collection, addDoc } from 'firebase/firestore';
 
 interface LeaderboardModalProps {
   time: number;
+  gameBoard: number;
 }
 
-const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => { 
+const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time, gameBoard }) => { 
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -31,16 +32,37 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time }) => {
     setName(e.target.value);
   };
 
+  // const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  //   e.preventDefault();
+  //   const timeString = formatTime(time);
+  //   try {
+  //     const docRef = await addDoc(collection(db, "leaderboard"), { name, time: timeString });
+  //     console.log("Document written with ID: ", docRef.id);
+  //     setName("");
+  //     navigate("/leaderboard"); 
+  //   } catch (error) {
+  //     console.error("Error adding document: ", error);
+  //   }
+  // };
+
   const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const timeString = formatTime(time);
-    // console.log("name: ", name);
-    // console.log("time: ", timeString);
     try {
-      const docRef = await addDoc(collection(db, "leaderboard"), { name, time: timeString });
+      let collectionName;
+      if (gameBoard === 1) {
+        collectionName = "leaderboardOne";
+      } else if (gameBoard === 2) {
+        collectionName = "leaderboardTwo";
+      } else if (gameBoard === 3) {
+        collectionName = "leaderboardThree";
+      } else {
+        throw new Error("Invalid game board number.");
+      }
+      const docRef = await addDoc(collection(db, collectionName), { name, time: timeString });
       console.log("Document written with ID: ", docRef.id);
       setName("");
-      navigate("/leaderboard"); 
+      navigate("/leaderboard");
     } catch (error) {
       console.error("Error adding document: ", error);
     }

@@ -26,6 +26,7 @@ const GameboardThree: React.FC = () => {
   const HatterBox = {left: 907, right: 930, top: 516, bottom: 541};
   const ClawsBox = {left: 246, right: 275, top: 566, bottom: 589};
   const characters = [["Felicia", Felicia], ["Hatter", Hatter], ["Claws", Claws]];
+  const gameBoard = 3;
 
   useEffect(() => {
     if (remainingCharacters.length === 0) {
@@ -131,6 +132,7 @@ const GameboardThree: React.FC = () => {
       {remainingCharacters.length === 0 && (
         <LeaderboardFormModal 
           time={time}
+          gameBoard={gameBoard}
         />
       )}
     </GameboardThreeContainer>
