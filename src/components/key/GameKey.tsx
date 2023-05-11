@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import checkmark from "../images/checkmark.png";
+import checkmark from "../../images/checkmark.png";
 
 interface GameKeyProps {
   remainingCharacters: string[];
