@@ -1,32 +1,33 @@
-// GameboardOne.tsx
+// GameboardTwo.tsx
 
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-import temptation from '../../images/temptation_of_saint_anthony.jpg';
-import Alice from "../../images/TemptAlice.png";
-import Tinbird from "../../images/TemptTinbird.png";
-import Frank from "../../images/TemptFrank.png";
-import Timer from "../../components/Timer";
-import GameKey from "../../components/GameKey";
-import TargetBox from "../../components/TargetBox";
-import StartGameModal from "../../components/StartGameModal";
-import LeaderboardFormModal from "../../components/LeaderboardFormModal";
+import Garden from '../../../images/the-garden-of-earthly-delights.png';
+import Sk8r from "../../../images/GardenSk8r.png";
+import Peter from "../../../images/GardenPeter.png";
+import Bugsy from "../../../images/GardenBugsy.png";
+import Timer from "../../../components/Timer";
+import GameKey from "../../../components/GameKey";
+import TargetBox from "../../../components/TargetBox";
+import StartGameModal from "../../../components/StartGameModal";
+import LeaderboardFormModal from "../../../components/LeaderboardFormModal";
 
-const GameboardOne: React.FC = () => {
+const GameboardTwo: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const [remainingCharacters, setRemainingCharacters] = useState(["Alice", "Tinbird", "Frank"]);
+  const [remainingCharacters, setRemainingCharacters] = useState(["Sk8r", "Peter", "Bugsy"]);
   const [time, setTime] = useState<number>(0);
   const [isKeyVisible, setIsKeyVisible] = useState<boolean>(true);
   
-  const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
-  const tinbirdBox = {left: 714, right: 730, top: 283, bottom: 305};
-  const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
-  const characters = [["Alice", Alice], ["Tinbird", Tinbird], ["Frank", Frank]];
-  const gameBoard = 1;
+  // CHANGE!!
+  const Sk8rBox = {left: 948, right: 980, top: 318, bottom: 338};
+  const PeterBox = {left: 850, right: 874, top: 422, bottom: 460};
+  const BugsyBox = {left: 197, right: 214, top: 250, bottom: 267};
+  const characters = [["Sk8r", Sk8r], ["Peter", Peter], ["Bugsy", Bugsy]];
+  const gameBoard = 2;
 
   useEffect(() => {
     if (remainingCharacters.length === 0) {
@@ -46,23 +47,25 @@ const GameboardOne: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
+    // console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 
     }
   };
 
+  // CHANGE!!
   const handleDropImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    if ((dropdownLocation && dropdownLocation.x >= aliceBox.left 
-      && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
-      && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice')
-      || (dropdownLocation && dropdownLocation.x >= tinbirdBox.left 
-      && dropdownLocation.x <= tinbirdBox.right && dropdownLocation.y >= tinbirdBox.top 
-      && dropdownLocation.y <= tinbirdBox.bottom && e.currentTarget.alt === 'Tinbird')
-      || (dropdownLocation && dropdownLocation.x >= frankBox.left 
-      && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
-      && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
-      //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
+    if ((dropdownLocation && dropdownLocation.x >= Sk8rBox.left 
+      && dropdownLocation.x <= Sk8rBox.right && dropdownLocation.y >= Sk8rBox.top 
+      && dropdownLocation.y <= Sk8rBox.bottom && e.currentTarget.alt === 'Sk8r')
+      || (dropdownLocation && dropdownLocation.x >= PeterBox.left 
+      && dropdownLocation.x <= PeterBox.right && dropdownLocation.y >= PeterBox.top 
+      && dropdownLocation.y <= PeterBox.bottom && e.currentTarget.alt === 'Peter')
+      || (dropdownLocation && dropdownLocation.x >= BugsyBox.left 
+      && dropdownLocation.x <= BugsyBox.right && dropdownLocation.y >= BugsyBox.top 
+      && dropdownLocation.y <= BugsyBox.bottom && e.currentTarget.alt === 'Bugsy')) {
+      // console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       const updatedCharacters = remainingCharacters.filter((char) => char !== e.currentTarget.alt);
       setRemainingCharacters(updatedCharacters);
       setTimeout(() => {
@@ -82,7 +85,7 @@ const GameboardOne: React.FC = () => {
   };
 
   return (
-    <GameboardOneContainer>
+    <GameboardTwoContainer>
       {isVisible &&
         <StartGameModal
           setIsVisible={setIsVisible}
@@ -90,23 +93,6 @@ const GameboardOne: React.FC = () => {
           characters={characters}
         />
       }
-      {/* <HideKeyWrapper>
-        <InfoWrapper>
-          {isTimerStarted && (
-            <Timer 
-              counter={counter}
-              setCounter={setCounter}
-            />
-          )}
-          <GameKey 
-            remainingCharacters={remainingCharacters}
-            characters={characters}
-          />
-        </InfoWrapper>
-        <KeyVisibilityButton onClick={toggleKeyVisibility}>
-          {isKeyVisible ? "Hide Key" : "Show Key"}
-        </KeyVisibilityButton>
-      </HideKeyWrapper> */}
       <HideKeyWrapper>
         <KeyVisibilityButton onClick={toggleKeyVisibility}>
           {isKeyVisible ? "Hide Key" : "Show Key"}
@@ -123,7 +109,7 @@ const GameboardOne: React.FC = () => {
       </HideKeyWrapper>
       <ImageWrapper>
         <Image 
-          src={temptation} 
+          src={Garden} 
           onClick={handleImageClick}
         />
         {isDropdownVisible && dropdownLocation && (
@@ -143,11 +129,11 @@ const GameboardOne: React.FC = () => {
           gameBoard={gameBoard}
         />
       )}
-    </GameboardOneContainer>
+    </GameboardTwoContainer>
   );
 };
 
-const GameboardOneContainer = styled.div` 
+const GameboardTwoContainer = styled.div` 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -187,10 +173,9 @@ const ImageWrapper = styled.div`
   position: relative; // without the dropdown is too high
 `;
 
-// change so that you can zoom all the way in and click to drag image?
 const Image = styled.img`
   width: 1000px;
   margin-top: 15px; 
 `;
 
-export { GameboardOne, Image };
+export { GameboardTwo, Image };

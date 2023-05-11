@@ -1,33 +1,32 @@
-// GameboardThree.tsx
+// GameboardOne.tsx
 
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-import Judgement from '../../images/the-last-judgment.png';
-import Felicia from "../../images/JudgeFelicia.png";
-import Hatter from "../../images/JudgeHatter.png";
-import Claws from "../../images/JudgeClaws.png";
-import Timer from "../../components/Timer";
-import GameKey from "../../components/GameKey";
-import TargetBox from "../../components/TargetBox";
-import StartGameModal from "../../components/StartGameModal";
-import LeaderboardFormModal from "../../components/LeaderboardFormModal";
+import temptation from '../../../images/temptation_of_saint_anthony.jpg';
+import Alice from "../../../images/TemptAlice.png";
+import Tinbird from "../../../images/TemptTinbird.png";
+import Frank from "../../../images/TemptFrank.png";
+import Timer from "../../../components/Timer";
+import GameKey from "../../../components/GameKey";
+import TargetBox from "../../../components/TargetBox";
+import StartGameModal from "../../../components/StartGameModal";
+import LeaderboardFormModal from "../../../components/LeaderboardFormModal";
 
-const GameboardThree: React.FC = () => {
+const GameboardOne: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [counter, setCounter] = useState<number>(0);
   const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
   const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
-  const [remainingCharacters, setRemainingCharacters] = useState(["Felicia", "Hatter", "Claws"]);
+  const [remainingCharacters, setRemainingCharacters] = useState(["Alice", "Tinbird", "Frank"]);
   const [time, setTime] = useState<number>(0);
   const [isKeyVisible, setIsKeyVisible] = useState<boolean>(true);
   
-  // CHANGE!!
-  const FeliciaBox = {left: 634, right: 654, top: 337, bottom: 354};
-  const HatterBox = {left: 907, right: 930, top: 516, bottom: 541};
-  const ClawsBox = {left: 246, right: 275, top: 566, bottom: 589};
-  const characters = [["Felicia", Felicia], ["Hatter", Hatter], ["Claws", Claws]];
-  const gameBoard = 3;
+  const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
+  const tinbirdBox = {left: 714, right: 730, top: 283, bottom: 305};
+  const frankBox = {left: 795, right: 806, top: 340, bottom: 355};
+  const characters = [["Alice", Alice], ["Tinbird", Tinbird], ["Frank", Frank]];
+  const gameBoard = 1;
 
   useEffect(() => {
     if (remainingCharacters.length === 0) {
@@ -47,25 +46,23 @@ const GameboardThree: React.FC = () => {
     const imgRect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - imgRect.left;
     const y = event.clientY - imgRect.top;
-    // console.log(`Clicked at location: (${x}, ${y})`);
     if (!isDropdownVisible) {
       setDropdownLocation({ x, y });
       setIsDropdownVisible(true); 
     }
   };
 
-  // CHANGE!!
   const handleDropImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    if ((dropdownLocation && dropdownLocation.x >= FeliciaBox.left 
-      && dropdownLocation.x <= FeliciaBox.right && dropdownLocation.y >= FeliciaBox.top 
-      && dropdownLocation.y <= FeliciaBox.bottom && e.currentTarget.alt === 'Felicia')
-      || (dropdownLocation && dropdownLocation.x >= HatterBox.left 
-      && dropdownLocation.x <= HatterBox.right && dropdownLocation.y >= HatterBox.top 
-      && dropdownLocation.y <= HatterBox.bottom && e.currentTarget.alt === 'Hatter')
-      || (dropdownLocation && dropdownLocation.x >= ClawsBox.left 
-      && dropdownLocation.x <= ClawsBox.right && dropdownLocation.y >= ClawsBox.top 
-      && dropdownLocation.y <= ClawsBox.bottom && e.currentTarget.alt === 'Claws')) {
-      // console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
+    if ((dropdownLocation && dropdownLocation.x >= aliceBox.left 
+      && dropdownLocation.x <= aliceBox.right && dropdownLocation.y >= aliceBox.top 
+      && dropdownLocation.y <= aliceBox.bottom && e.currentTarget.alt === 'Alice')
+      || (dropdownLocation && dropdownLocation.x >= tinbirdBox.left 
+      && dropdownLocation.x <= tinbirdBox.right && dropdownLocation.y >= tinbirdBox.top 
+      && dropdownLocation.y <= tinbirdBox.bottom && e.currentTarget.alt === 'Tinbird')
+      || (dropdownLocation && dropdownLocation.x >= frankBox.left 
+      && dropdownLocation.x <= frankBox.right && dropdownLocation.y >= frankBox.top 
+      && dropdownLocation.y <= frankBox.bottom && e.currentTarget.alt === 'Frank')) {
+      //console.log(`Clicked at location: (${dropdownLocation.x}, ${dropdownLocation.y})`);
       const updatedCharacters = remainingCharacters.filter((char) => char !== e.currentTarget.alt);
       setRemainingCharacters(updatedCharacters);
       setTimeout(() => {
@@ -85,7 +82,7 @@ const GameboardThree: React.FC = () => {
   };
 
   return (
-    <GameboardThreeContainer>
+    <GameboardOneContainer>
       {isVisible &&
         <StartGameModal
           setIsVisible={setIsVisible}
@@ -109,7 +106,7 @@ const GameboardThree: React.FC = () => {
       </HideKeyWrapper>
       <ImageWrapper>
         <Image 
-          src={Judgement} 
+          src={temptation} 
           onClick={handleImageClick}
         />
         {isDropdownVisible && dropdownLocation && (
@@ -129,11 +126,11 @@ const GameboardThree: React.FC = () => {
           gameBoard={gameBoard}
         />
       )}
-    </GameboardThreeContainer>
+    </GameboardOneContainer>
   );
 };
 
-const GameboardThreeContainer = styled.div` 
+const GameboardOneContainer = styled.div` 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -178,4 +175,4 @@ const Image = styled.img`
   margin-top: 15px; 
 `;
 
-export { GameboardThree, Image };
+export { GameboardOne, Image };
