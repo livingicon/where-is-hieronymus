@@ -20,6 +20,7 @@ const GameboardThree: React.FC = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [remainingCharacters, setRemainingCharacters] = useState(["Felicia", "Hatter", "Claws"]);
   const [time, setTime] = useState<number>(0);
+  const [isKeyVisible, setIsKeyVisible] = useState<boolean>(true);
   
   // CHANGE!!
   const FeliciaBox = {left: 634, right: 654, top: 337, bottom: 354};
@@ -79,6 +80,10 @@ const GameboardThree: React.FC = () => {
     setIsDropdownVisible(false);
   }
 
+  const toggleKeyVisibility = () => {
+    setIsKeyVisible(!isKeyVisible);
+  };
+
   return (
     <GameboardThreeContainer>
       {isVisible &&
@@ -88,18 +93,20 @@ const GameboardThree: React.FC = () => {
           characters={characters}
         />
       }
-      <InfoWrapper>
-        {isTimerStarted && (
-          <Timer 
-            counter={counter}
-            setCounter={setCounter}
+      <HideKeyWrapper>
+        <KeyVisibilityButton onClick={toggleKeyVisibility}>
+          {isKeyVisible ? "Hide Key" : "Show Key"}
+        </KeyVisibilityButton>
+        <InfoWrapper isVisible={isKeyVisible}>
+          {isTimerStarted && (
+            <Timer counter={counter} setCounter={setCounter} />
+          )}
+          <GameKey
+            remainingCharacters={remainingCharacters}
+            characters={characters}
           />
-        )}
-        <GameKey 
-          remainingCharacters={remainingCharacters}
-          characters={characters}
-        />
-      </InfoWrapper>
+        </InfoWrapper>
+      </HideKeyWrapper>
       <ImageWrapper>
         <Image 
           src={Judgement} 
@@ -134,25 +141,38 @@ const GameboardThreeContainer = styled.div`
   margin-top: 15px;
 `;
 
-// CHANGE TO ABSOLUTE POSITIONED AND SIZED FOR ZOOM ALWAYS ON SCREEN?
-const InfoWrapper = styled.div`
+const HideKeyWrapper = styled.div`
   position: fixed;
   z-index: 1;
-  top: 3%;
-  left: 3%;
+  top: 1%;
+  left: 1%;
+`;
+
+const KeyVisibilityButton = styled.button`
+  position: relative;
+  font-weight: bold;
+  width: 75px;
+  padding: 2px;
+  background-color: #ca8a04;
+  border: 3px solid black;
+  border-radius: 5px;
+`;
+
+const InfoWrapper = styled.div<{ isVisible: boolean }>`
+  position: relative;
   width: 160px;
   height: 75px;
   background-color: black;
   color: white;
   border-radius: 5px;
   padding: 5px;
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
 `;
 
 const ImageWrapper = styled.div`
   position: relative; // without the dropdown is too high
 `;
 
-// change so that you can zoom all the way in and click to drag image?
 const Image = styled.img`
   width: 1000px;
   margin-top: 15px; 
