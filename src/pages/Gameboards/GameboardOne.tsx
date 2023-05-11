@@ -6,8 +6,8 @@ import temptation from '../../images/temptation_of_saint_anthony.jpg';
 import Alice from "../../images/TemptAlice.png";
 import Tinbird from "../../images/TemptTinbird.png";
 import Frank from "../../images/TemptFrank.png";
-import checkmark from "../../images/checkmark.png";
 import Timer from "../../components/Timer";
+import GameKey from "../../components/GameKey";
 import TargetBox from "../../components/TargetBox";
 import StartGameModal from "../../components/StartGameModal";
 import LeaderboardFormModal from "../../components/LeaderboardFormModal";
@@ -20,6 +20,7 @@ const GameboardOne: React.FC = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const [remainingCharacters, setRemainingCharacters] = useState(["Alice", "Tinbird", "Frank"]);
   const [time, setTime] = useState<number>(0);
+  const [isKeyVisible, setIsKeyVisible] = useState<boolean>(true);
   
   const aliceBox = {left: 434, right: 455, top: 210, bottom: 255};
   const tinbirdBox = {left: 714, right: 730, top: 283, bottom: 305};
@@ -76,6 +77,10 @@ const GameboardOne: React.FC = () => {
     setIsDropdownVisible(false);
   }
 
+  const toggleKeyVisibility = () => {
+    setIsKeyVisible(!isKeyVisible);
+  };
+
   return (
     <GameboardOneContainer>
       {isVisible &&
@@ -85,31 +90,37 @@ const GameboardOne: React.FC = () => {
           characters={characters}
         />
       }
-      <InfoWrapper>
-        {isTimerStarted && (
-          <Timer 
-            counter={counter}
-            setCounter={setCounter}
+      {/* <HideKeyWrapper>
+        <InfoWrapper>
+          {isTimerStarted && (
+            <Timer 
+              counter={counter}
+              setCounter={setCounter}
+            />
+          )}
+          <GameKey 
+            remainingCharacters={remainingCharacters}
+            characters={characters}
           />
-        )}
-        <KeyWrapper>
-          <div className="characters">
-            <p>Alice</p>
-            <img src={Alice} className="character" alt="Dark skinned woman" />
-            {!remainingCharacters.includes('Alice') && <img src={checkmark} alt="check mark" className="checkmark" />}
-          </div>
-          <div className="characters">
-            <p>Tinbird</p>
-            <img src={Tinbird} className="character" alt="Bird in knight's helmet" />
-            {!remainingCharacters.includes('Tinbird') && <img src={checkmark} alt="check mark" className="checkmark" />}
-          </div>
-          <div className="characters">
-            <p>Frank</p>
-            <img src={Frank} className="character" alt="Shadowy hooded figure" />
-            {!remainingCharacters.includes('Frank') && <img src={checkmark} alt="check mark" className="checkmark" />}
-          </div>
-        </KeyWrapper>
-      </InfoWrapper>
+        </InfoWrapper>
+        <KeyVisibilityButton onClick={toggleKeyVisibility}>
+          {isKeyVisible ? "Hide Key" : "Show Key"}
+        </KeyVisibilityButton>
+      </HideKeyWrapper> */}
+      <HideKeyWrapper>
+        <KeyVisibilityButton onClick={toggleKeyVisibility}>
+          {isKeyVisible ? "Hide Key" : "Show Key"}
+        </KeyVisibilityButton>
+        <InfoWrapper isVisible={isKeyVisible}>
+          {isTimerStarted && (
+            <Timer counter={counter} setCounter={setCounter} />
+          )}
+          <GameKey
+            remainingCharacters={remainingCharacters}
+            characters={characters}
+          />
+        </InfoWrapper>
+      </HideKeyWrapper>
       <ImageWrapper>
         <Image 
           src={temptation} 
@@ -129,7 +140,7 @@ const GameboardOne: React.FC = () => {
       {remainingCharacters.length === 0 && (
         <LeaderboardFormModal 
           time={time}
-          gameBoard={gameBoard} // HERE!!
+          gameBoard={gameBoard}
         />
       )}
     </GameboardOneContainer>
@@ -144,50 +155,32 @@ const GameboardOneContainer = styled.div`
   margin-top: 15px;
 `;
 
-// CHANGE TO ABSOLUTE POSITIONED AND SIZED FOR ZOOM ALWAYS ON SCREEN?
-const InfoWrapper = styled.div`
+const HideKeyWrapper = styled.div`
   position: fixed;
   z-index: 1;
-  top: 3%;
-  left: 3%;
+  top: 1%;
+  left: 1%;
+`;
+
+const KeyVisibilityButton = styled.button`
+  position: relative;
+  font-weight: bold;
+  width: 75px;
+  padding: 2px;
+  background-color: #ca8a04;
+  border: 3px solid black;
+  border-radius: 5px;
+`;
+
+const InfoWrapper = styled.div<{ isVisible: boolean }>`
+  position: relative;
   width: 160px;
   height: 75px;
   background-color: black;
   color: white;
   border-radius: 5px;
   padding: 5px;
-`;
-
-const KeyWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-
-  img {
-    border-radius: 50%;
-    width: 30px;
-    margin: 0px;
-  }
-
-  .characters {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .character {
-    position: relative;
-  }
-
-  .checkmark {
-    position: absolute;
-    top: 18px;
-  }
-
-  p {
-    margin: 0;
-  }
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
 `;
 
 const ImageWrapper = styled.div`

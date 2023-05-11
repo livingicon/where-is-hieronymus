@@ -6,8 +6,8 @@ import Garden from '../../images/the-garden-of-earthly-delights.png';
 import Sk8r from "../../images/GardenSk8r.png";
 import Peter from "../../images/GardenPeter.png";
 import Bugsy from "../../images/GardenBugsy.png";
-import checkmark from "../../images/checkmark.png";
 import Timer from "../../components/Timer";
+import GameKey from "../../components/GameKey";
 import TargetBox from "../../components/TargetBox";
 import StartGameModal from "../../components/StartGameModal";
 import LeaderboardFormModal from "../../components/LeaderboardFormModal";
@@ -95,23 +95,10 @@ const GameboardTwo: React.FC = () => {
             setCounter={setCounter}
           />
         )}
-        <KeyWrapper>
-          <div className="characters">
-            <p>Sk8r</p>
-            <img src={Sk8r} className="character" alt="skating penguin" />
-            {!remainingCharacters.includes('Sk8r') && <img src={checkmark} alt="check mark" className="checkmark" />}
-          </div>
-          <div className="characters">
-            <p>Peter</p>
-            <img src={Peter} className="character" alt="rabbit" />
-            {!remainingCharacters.includes('Peter') && <img src={checkmark} alt="check mark" className="checkmark" />}
-          </div>
-          <div className="characters">
-            <p>Bugsy</p>
-            <img src={Bugsy} className="character" alt="blue beetle" />
-            {!remainingCharacters.includes('Bugsy') && <img src={checkmark} alt="check mark" className="checkmark" />}
-          </div>
-        </KeyWrapper>
+        <GameKey 
+          remainingCharacters={remainingCharacters}
+          characters={characters}
+        />
       </InfoWrapper>
       <ImageWrapper>
         <Image 
@@ -159,38 +146,6 @@ const InfoWrapper = styled.div`
   color: white;
   border-radius: 5px;
   padding: 5px;
-`;
-
-const KeyWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-
-  img {
-    border-radius: 50%;
-    width: 30px;
-    margin: 0px;
-  }
-
-  .characters {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .character {
-    position: relative;
-  }
-
-  .checkmark {
-    position: absolute;
-    top: 19px;
-  }
-
-  p {
-    margin: 0;
-  }
 `;
 
 const ImageWrapper = styled.div`

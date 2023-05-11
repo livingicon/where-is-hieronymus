@@ -47,7 +47,6 @@ const Leaderboard: React.FC = () => {
 
   return (
     <LeaderboardWrapper>
-      <h1>Leaderboard!</h1>
       <h2>Leaderboard One</h2>
       <LeaderboardTable>
         <thead>
