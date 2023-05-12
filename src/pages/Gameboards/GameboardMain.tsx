@@ -1,40 +1,135 @@
 // GameboardMain.tsx
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
-// import { Link } from "react-router-dom";
-// import TemptAnthony from "../images/temptation_of_saint_anthony.jpg";
-// import GardenDelights from "../images/the-garden-of-earthly-delights.png";
-// import LastJudgement from "../images/the-last-judgment.png";
+import StartGameModal from "../../components/StartGameModal";
+import Key from "../../components/Key";
+import Image from "../../components/Image";
+import LeaderboardFormModal from "../../components/LeaderboardFormModal";
 
-const GameboardMain: React.FC = () => {
+interface GameboardMainProps {
+  gameBoard: number;
+  characters: [string, string][];
+  imageSrc: string;
+  characterBoxes: { left: number; right: number; top: number; bottom: number }[];
+}
+
+const GameboardMain: React.FC<GameboardMainProps> = ({
+  gameBoard,
+  characters,
+  imageSrc,
+  characterBoxes,
+}) => {
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [counter, setCounter] = useState<number>(0);
+  const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false);
+  const [dropdownLocation, setDropdownLocation] = useState<{ x: number; y: number } | null>(null);
+  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+  const [remainingCharacters, setRemainingCharacters] = useState(characters.map(([name]) => name));
+  const [time, setTime] = useState<number>(0);
+  const [isKeyVisible, setIsKeyVisible] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (remainingCharacters.length === 0) {
+      // console.log("game over!");
+      setIsTimerStarted(false);
+      setTime(counter);
+      // console.log(`Time taken: ${counter} seconds`);
+    }
+  }, [remainingCharacters, counter]);
+
+  const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
+    const imgRect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - imgRect.left;
+    const y = event.clientY - imgRect.top;
+    if (!isDropdownVisible) {
+      setDropdownLocation({ x, y });
+      setIsDropdownVisible(true);
+    }
+  };
+
+  const handleDropImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    const clickedCharacter = e.currentTarget.alt;
+    const clickedCharacterIndex = characters.findIndex(([name]) => name === clickedCharacter);
+    const clickedCharacterBox = characterBoxes[clickedCharacterIndex];
+
+    if (
+      dropdownLocation &&
+      dropdownLocation.x >= clickedCharacterBox.left &&
+      dropdownLocation.x <= clickedCharacterBox.right &&
+      dropdownLocation.y >= clickedCharacterBox.top &&
+      dropdownLocation.y <= clickedCharacterBox.bottom
+    ) {
+      const updatedCharacters = remainingCharacters.filter((char) => char !== clickedCharacter);
+      setRemainingCharacters(updatedCharacters);
+      setTimeout(() => {
+        setIsDropdownVisible(false);
+      }, 300);
+    } else {
+      setIsDropdownVisible(false);
+    }
+  };
+
+  const handleCloseClick = () => {
+    setIsDropdownVisible(false);
+  };
+
+  const toggleKeyVisibility = () => {
+    setIsKeyVisible(!isKeyVisible);
+  };
+
+  const handleStartGame = () => {
+    setIsVisible(false);
+    setIsTimerStarted(true);
+  };
 
   return (
-    <GameboardsContainer>
-    </GameboardsContainer>
+    <GameboardContainer>
+      {isVisible && (
+        <StartGameModal
+          setIsVisible={setIsVisible}
+          startTimer={handleStartGame}
+          characters={characters}
+        />
+      )}
+
+      <Key
+        toggleKeyVisibility={toggleKeyVisibility}
+        isKeyVisible={isKeyVisible}
+        isTimerStarted={isTimerStarted}
+        counter={counter}
+        setCounter={setCounter}
+        remainingCharacters={remainingCharacters}
+        characters={characters}
+      />
+
+      <Image
+        src={imageSrc}
+        handleImageClick={handleImageClick}
+        isDropdownVisible={isDropdownVisible}
+        dropdownLocation={dropdownLocation}
+        handleCloseClick={handleCloseClick}
+        handleDropImageClick={handleDropImageClick}
+        characters={characters}
+        remainingCharacters={remainingCharacters}
+      />
+
+      {remainingCharacters.length === 0 && (
+        <LeaderboardFormModal 
+          time={time}
+          gameBoard={gameBoard}
+        />
+      )}
+    </GameboardContainer>
   );
 };
 
-const GameboardsContainer = styled.div` 
-  display: grid;
-  text-align: center;
-  color: #333;
-`;
-
-const GameboardImages = styled.div`
+const GameboardContainer = styled.div` 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const Image = styled.img`
-  width: 145px;
-  height: 200px;
-  object-fit: cover;
-  margin: 20px;
-  box-shadow: 5px 5px 15px #333;
-  &:hover {
-    transform: scale(1.1);
+  margin-top: 15px;
 `;
 
 export default GameboardMain;
