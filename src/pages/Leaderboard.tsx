@@ -47,84 +47,113 @@ const Leaderboard: React.FC = () => {
 
   return (
     <LeaderboardWrapper>
-      <h2>Leaderboard One</h2>
-      <LeaderboardTable>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboardOne.map((entry, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{entry.name}</td>
-              <td>{entry.time}</td>
-            </tr>
-          ))}
-        </tbody>
-      </LeaderboardTable>
-      <h2>Leaderboard Two</h2>
-      <LeaderboardTable>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboardTwo.map((entry, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{entry.name}</td>
-              <td>{entry.time}</td>
-            </tr>
-          ))}
-        </tbody>
-      </LeaderboardTable>
-      <h2>Leaderboard Three</h2>
-      <LeaderboardTable>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboardThree.map((entry, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{entry.name}</td>
-              <td>{entry.time}</td>
-            </tr>
-          ))}
-        </tbody>
-      </LeaderboardTable>
+      <LeaderboardContainer>
+        <LeaderboardSection>
+          <h2>Board One</h2>
+          <LeaderboardTable>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboardOne.map((entry, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{entry.name}</td>
+                  <td>{entry.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </LeaderboardTable>
+        </LeaderboardSection>
+        <LeaderboardSection>
+          <h2>Board Two</h2>
+          <LeaderboardTable>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboardTwo.map((entry, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{entry.name}</td>
+                  <td>{entry.time}</td>
+                  </tr>
+              ))}
+            </tbody>
+          </LeaderboardTable>
+        </LeaderboardSection>
+        <LeaderboardSection>
+          <h2>Board Three</h2>
+          <LeaderboardTable>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboardThree.map((entry, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{entry.name}</td>
+                  <td>{entry.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </LeaderboardTable>
+        </LeaderboardSection>
+      </LeaderboardContainer>
     </LeaderboardWrapper>
   );
 };
-  
-const LeaderboardWrapper = styled.div` 
-  max-width: 600px; 
-  margin: 0 auto;;
+
+const LeaderboardWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  height: calc(100vh - 60px); 
+  margin: 0 auto;
+  background-color: #52525b;
+  padding: 10px;
+`;
+
+const LeaderboardContainer = styled.div`
+  display: flex;
+  height: 95%;
+`;
+
+const LeaderboardSection = styled.div`
+  flex: 1;
+  margin-right: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
 `;
 
 const LeaderboardTable = styled.table`
-border-collapse: collapse;
-margin-top: 20px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: orange;
 
-th {
-text-align: left;
-}
+  th {
+    text-align: left;
+  }
 
-td, th {
-padding: 5px 10px;
-border: 1px solid black;
-}
+  td,
+  th {
+    // padding: 5px 10px;
+    // border: 1px solid black;
+  }
 `;
 
 export default Leaderboard;
+
