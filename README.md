@@ -1,4 +1,4 @@
-<!-- ![alt text](https://github.com/livingicon/where-is-hieronymus/blob/main/src/images/where-is-hieronymus.png?raw=true) -->
+![alt text](https://github.com/livingicon/where-is-hieronymus/blob/main/src/images/where-is-hieronymus.png?raw=true)
 
 <h1>Where's Hieronymus?</h1>
 <h2>A Photo Tagging App</h2>
