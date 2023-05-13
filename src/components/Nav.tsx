@@ -46,7 +46,7 @@ const NavWrapper = styled.div`
     height: 25px;
     border: 2px solid black;
     border-radius: 10%;
-    margin: 0 3px;
+    margin: 0 3px 0 30px;
   }
 
   h1 {
@@ -58,7 +58,7 @@ const NavWrapper = styled.div`
     display: flex;
     list-style: none;
     margin: 0;
-    padding-right: 10px;
+    padding-right: 40px;
   }
 
   li {

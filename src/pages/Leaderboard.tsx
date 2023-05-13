@@ -14,8 +14,7 @@ const Leaderboard: React.FC = () => {
   const [leaderboardOne, setLeaderboardOne] = useState<LeaderboardEntry[]>([]);
   const [leaderboardTwo, setLeaderboardTwo] = useState<LeaderboardEntry[]>([]);
   const [leaderboardThree, setLeaderboardThree] = useState<LeaderboardEntry[]>([]);
-  const [isNewEntryHighlighted, setIsNewEntryHighlighted] = useState(false);
-
+  
   useEffect(() => {
     const fetchLeaderboardOne = async () => {
       const leaderboardOneRef = collection(db, "leaderboardOne");
@@ -126,6 +125,7 @@ const Leaderboard: React.FC = () => {
 const LeaderboardWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   height: calc(100vh - 60px); 
   margin: 0 auto;
   background-color: #52525b;
@@ -134,7 +134,10 @@ const LeaderboardWrapper = styled.div`
 
 const LeaderboardContainer = styled.div`
   display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
   height: 95%;
+  width: 100%; 
 `;
 
 const LeaderboardSection = styled.div`
@@ -142,6 +145,9 @@ const LeaderboardSection = styled.div`
   margin: 10px;
   background-color: white;
   border-radius: 10px;
+  min-width: 310px; 
+  max-width: 400px;
+  overflow-y: auto; /* Enable vertical scrolling */
 
   .boardHeader {
     width: 100%;
@@ -163,7 +169,8 @@ const LeaderboardTable = styled.table`
 
   td,
   th {
-    font-size: 12px;
+    font-size: 20px;
+    padding: 5px;
   }
 `;
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Leaderboard from "../pages/Leaderboard";
 import styled from "styled-components";
 import db from "../config/config";
 import { collection, addDoc } from 'firebase/firestore';
@@ -11,7 +12,10 @@ interface LeaderboardModalProps {
   gameBoard: number;
 }
 
-const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time, gameBoard }) => { 
+const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ 
+  time, 
+  gameBoard,
+ }) => { 
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -58,10 +62,12 @@ const LeaderboardFormModal: React.FC<LeaderboardModalProps> = ({ time, gameBoard
   return (
     <LeaderboardFormWrapper>
       <section>
-        <h2>Register Your Time for The Leaderboard</h2>
-        <p>Time: {formatTime(time)}</p>
+        <div className="leaderRegisterHeader">
+          <h2>Leaderboard Registration</h2>
+        </div>
+        <p>Congratulations! You found all three characters in {formatTime(time)}.</p>
         <form onSubmit={handleRegisterSubmit}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name </label>
           <input 
             type="text"
             id="name"
@@ -99,17 +105,32 @@ const LeaderboardFormWrapper = styled.div`
     border-radius: 5px;
     background-color: #f0f0f0;
     font-weight: bold;
-    color: black; // change
-    padding: 10px;
-    display: flex; // change to block?
+    color: black;
+    display: flex;
     flex-direction: column;
     text-align: center;
     overflow: auto;
     max-height: 100vh;
   }
 
-  h2 {
-    margin: 0;
+  .leaderRegisterHeader {
+    width: 100%;
+    background-color: #52525b;
+    margin: 0px;
+    color: white;
+  }
+
+  button {
+    width: 100px;
+    margin: 10px;
+    padding: 5px;
+    background-color: #ca8a04;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px #333;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
