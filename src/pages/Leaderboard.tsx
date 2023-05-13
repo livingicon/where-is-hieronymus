@@ -14,6 +14,7 @@ const Leaderboard: React.FC = () => {
   const [leaderboardOne, setLeaderboardOne] = useState<LeaderboardEntry[]>([]);
   const [leaderboardTwo, setLeaderboardTwo] = useState<LeaderboardEntry[]>([]);
   const [leaderboardThree, setLeaderboardThree] = useState<LeaderboardEntry[]>([]);
+  const [isNewEntryHighlighted, setIsNewEntryHighlighted] = useState(false);
 
   useEffect(() => {
     const fetchLeaderboardOne = async () => {
@@ -49,7 +50,9 @@ const Leaderboard: React.FC = () => {
     <LeaderboardWrapper>
       <LeaderboardContainer>
         <LeaderboardSection>
-          <h2>Board One</h2>
+          <div className="boardHeader">
+            <h2>Board One</h2>
+          </div>
           <LeaderboardTable>
             <thead>
               <tr>
@@ -70,7 +73,9 @@ const Leaderboard: React.FC = () => {
           </LeaderboardTable>
         </LeaderboardSection>
         <LeaderboardSection>
-          <h2>Board Two</h2>
+          <div className="boardHeader">
+            <h2>Board Two</h2>
+          </div>
           <LeaderboardTable>
             <thead>
               <tr>
@@ -91,7 +96,9 @@ const Leaderboard: React.FC = () => {
           </LeaderboardTable>
         </LeaderboardSection>
         <LeaderboardSection>
-          <h2>Board Three</h2>
+          <div className="boardHeader">
+            <h2>Board Three</h2>
+          </div>
           <LeaderboardTable>
             <thead>
               <tr>
@@ -119,7 +126,6 @@ const Leaderboard: React.FC = () => {
 const LeaderboardWrapper = styled.div`
   display: flex;
   justify-content: center;
-  // align-items: center;
   height: calc(100vh - 60px); 
   margin: 0 auto;
   background-color: #52525b;
@@ -133,27 +139,32 @@ const LeaderboardContainer = styled.div`
 
 const LeaderboardSection = styled.div`
   flex: 1;
-  margin-right: 20px;
+  margin: 10px;
   background-color: white;
   border-radius: 10px;
-  padding: 10px;
+
+  .boardHeader {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #ca8a04;
+    text-align: center;
+    color: white;
+  }
+
+  h2 {
+    margin: 0px;
+  }
 `;
 
 const LeaderboardTable = styled.table`
   border-collapse: collapse;
-  margin-top: 20px;
-  background-color: orange;
-
-  th {
-    text-align: left;
-  }
+  margin: 10px;
 
   td,
   th {
-    // padding: 5px 10px;
-    // border: 1px solid black;
+    font-size: 12px;
   }
 `;
 
 export default Leaderboard;
-
