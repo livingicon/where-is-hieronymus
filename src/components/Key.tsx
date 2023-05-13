@@ -62,8 +62,8 @@ const KeyVisibilityButton = styled.button`
 
 const InfoWrapper = styled.div<{ isVisible: boolean }>`
   position: relative;
-  width: 160px;
-  height: 75px;
+  width: 300px;
+  height: 150px;
   background-color: black;
   color: white;
   border-radius: 5px;

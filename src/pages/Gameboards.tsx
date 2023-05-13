@@ -11,7 +11,7 @@ const Gameboards: React.FC = () => {
 
   return (
     <GameboardsContainer>
-      <p>Click a Hieronymus Bosch painting to search for three of it's characters.</p>
+      <h2>Click a Hieronymus Bosch painting to search for three of it's characters.</h2>
       <GameboardImages>
         <Link to="/the-temptation-of-saint-anthony">
           <Image src={TemptAnthony} alt="The Temptation of Saint Anthony Painting" />
@@ -40,8 +40,8 @@ const GameboardImages = styled.div`
 `;
 
 const Image = styled.img`
-  width: 145px;
-  height: 200px;
+  width: 325px;
+  height: 450px;
   object-fit: cover;
   margin: 20px;
   box-shadow: 5px 5px 15px #333;
