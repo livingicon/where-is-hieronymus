@@ -12,6 +12,7 @@ const Gameboards: React.FC = () => {
   return (
     <GameboardsContainer>
       <h2>Click a Hieronymus Bosch painting to search for three of it's characters.</h2>
+      <p>(just like playing "Where's Waldo")</p>
       <GameboardImages>
         <Link to="/the-temptation-of-saint-anthony">
           <Image src={TemptAnthony} alt="The Temptation of Saint Anthony Painting" />
@@ -31,6 +32,10 @@ const GameboardsContainer = styled.div`
   display: grid;
   text-align: center;
   color: #333;
+
+  p {
+    margin-top: 0px;
+  }
 `;
 
 const GameboardImages = styled.div`
