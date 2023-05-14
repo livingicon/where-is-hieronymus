@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.js": "/where-is-hieronymus/static/js/main.206ffcd8.js",
-    "static/media/temptation_of_saint_anthony.jpg": "/where-is-hieronymus/static/media/temptation_of_saint_anthony.8f0acaf174539be34bfe.jpg",
-    "static/media/the-last-judgment.png": "/where-is-hieronymus/static/media/the-last-judgment.8bb9e76350018fb91ece.png",
-    "static/media/the-garden-of-earthly-delights.png": "/where-is-hieronymus/static/media/the-garden-of-earthly-delights.fe2b2ba7f4d84fb32075.png",
-    "static/media/hieronymus-bosch-portrait.jpg": "/where-is-hieronymus/static/media/hieronymus-bosch-portrait.e56b42bbed791ac96a48.jpg",
-    "static/media/JudgeHatter.png": "/where-is-hieronymus/static/media/JudgeHatter.fc443abf1133cbfe8374.png",
-    "static/media/GardenSk8r.png": "/where-is-hieronymus/static/media/GardenSk8r.924f0f8b6a2976f3e240.png",
-    "static/media/JudgeClaws.png": "/where-is-hieronymus/static/media/JudgeClaws.6cf9cfbc9e25066433e5.png",
-    "static/media/TemptAlice.png": "/where-is-hieronymus/static/media/TemptAlice.eb7a4b4385c85f7657d4.png",
-    "static/media/JudgeFelicia.png": "/where-is-hieronymus/static/media/JudgeFelicia.83d3534b9fe05b8481e9.png",
-    "static/media/GardenBugsy.png": "/where-is-hieronymus/static/media/GardenBugsy.c5d6bbf8909174e35d70.png",
-    "static/media/TemptTinbird.png": "/where-is-hieronymus/static/media/TemptTinbird.8d2ffd77486099bff163.png",
-    "static/media/GardenPeter.png": "/where-is-hieronymus/static/media/GardenPeter.dc18c264379c1f207d31.png",
-    "static/media/TemptFrank.png": "/where-is-hieronymus/static/media/TemptFrank.c369aad587e6d9041625.png",
-    "static/media/checkmark.png": "/where-is-hieronymus/static/media/checkmark.1948eeec304f324a8cf5.png",
-    "index.html": "/where-is-hieronymus/index.html",
-    "main.206ffcd8.js.map": "/where-is-hieronymus/static/js/main.206ffcd8.js.map"
+    "main.js": "/static/js/main.b8d4a268.js",
+    "static/media/temptation_of_saint_anthony.jpg": "/static/media/temptation_of_saint_anthony.8f0acaf174539be34bfe.jpg",
+    "static/media/the-last-judgment.png": "/static/media/the-last-judgment.8bb9e76350018fb91ece.png",
+    "static/media/the-garden-of-earthly-delights.png": "/static/media/the-garden-of-earthly-delights.fe2b2ba7f4d84fb32075.png",
+    "static/media/hieronymus-bosch-portrait.jpg": "/static/media/hieronymus-bosch-portrait.e56b42bbed791ac96a48.jpg",
+    "static/media/JudgeHatter.png": "/static/media/JudgeHatter.fc443abf1133cbfe8374.png",
+    "static/media/GardenSk8r.png": "/static/media/GardenSk8r.924f0f8b6a2976f3e240.png",
+    "static/media/JudgeClaws.png": "/static/media/JudgeClaws.6cf9cfbc9e25066433e5.png",
+    "static/media/TemptAlice.png": "/static/media/TemptAlice.eb7a4b4385c85f7657d4.png",
+    "static/media/JudgeFelicia.png": "/static/media/JudgeFelicia.83d3534b9fe05b8481e9.png",
+    "static/media/GardenBugsy.png": "/static/media/GardenBugsy.c5d6bbf8909174e35d70.png",
+    "static/media/TemptTinbird.png": "/static/media/TemptTinbird.8d2ffd77486099bff163.png",
+    "static/media/GardenPeter.png": "/static/media/GardenPeter.dc18c264379c1f207d31.png",
+    "static/media/TemptFrank.png": "/static/media/TemptFrank.c369aad587e6d9041625.png",
+    "static/media/checkmark.png": "/static/media/checkmark.1948eeec304f324a8cf5.png",
+    "index.html": "/index.html",
+    "main.b8d4a268.js.map": "/static/js/main.b8d4a268.js.map"
   },
   "entrypoints": [
-    "static/js/main.206ffcd8.js"
+    "static/js/main.b8d4a268.js"
   ]
 }
