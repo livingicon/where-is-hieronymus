@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.b8d4a268.js",
+    "main.js": "/static/js/main.738f98c7.js",
     "static/media/temptation_of_saint_anthony.jpg": "/static/media/temptation_of_saint_anthony.8f0acaf174539be34bfe.jpg",
     "static/media/the-last-judgment.png": "/static/media/the-last-judgment.8bb9e76350018fb91ece.png",
     "static/media/the-garden-of-earthly-delights.png": "/static/media/the-garden-of-earthly-delights.fe2b2ba7f4d84fb32075.png",
@@ -16,9 +16,9 @@
     "static/media/TemptFrank.png": "/static/media/TemptFrank.c369aad587e6d9041625.png",
     "static/media/checkmark.png": "/static/media/checkmark.1948eeec304f324a8cf5.png",
     "index.html": "/index.html",
-    "main.b8d4a268.js.map": "/static/js/main.b8d4a268.js.map"
+    "main.738f98c7.js.map": "/static/js/main.738f98c7.js.map"
   },
   "entrypoints": [
-    "static/js/main.b8d4a268.js"
+    "static/js/main.738f98c7.js"
   ]
 }
