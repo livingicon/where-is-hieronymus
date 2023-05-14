@@ -1,7 +1,7 @@
 // App.tsx
 
 import React from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { createGlobalStyle } from 'styled-components';
 import Nav from "./components/Nav";
 import Main from "./components/Main";
