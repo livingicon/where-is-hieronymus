@@ -10,10 +10,11 @@ import Bugsy from "../../../images/GardenBugsy.png";
 const GameboardTwo: React.FC = () => {
   const characters: Array<[string, string]> = [["Sk8r", Sk8r], ["Peter", Peter], ["Bugsy", Bugsy]];
   const characterBoxes = [
-    { left: 948, right: 980, top: 318, bottom: 338 }, // Sk8r's bounding box
-    { left: 850, right: 874, top: 422, bottom: 460 }, // Peter's bounding box
-    { left: 197, right: 214, top: 250, bottom: 267 }, // Bugsy's bounding box
+    { left: 1616, right: 1666, top: 541, bottom: 576 }, // Sk8r's bounding box
+    { left: 1445, right: 1490, top: 719, bottom: 782 }, // Peter's bounding box
+    { left: 335, right: 365, top: 425, bottom: 455 }, // Bugsy's bounding box
   ];
+  
   return (
     <GameboardMain
       gameBoard={2}

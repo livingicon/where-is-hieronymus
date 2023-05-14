@@ -10,9 +10,9 @@ import Frank from "../../../images/TemptFrank.png";
 const GameboardOne: React.FC = () => {
   const characters: Array<[string, string]> = [["Alice", Alice], ["Tinbird", Tinbird], ["Frank", Frank]];
   const characterBoxes = [
-    { left: 434, right: 455, top: 210, bottom: 255 }, // Alice's bounding box
-    { left: 714, right: 730, top: 283, bottom: 305 }, // Tinbird's bounding box
-    { left: 795, right: 806, top: 340, bottom: 355 }, // Frank's bounding box
+    { left: 738, right: 774, top: 357, bottom: 434 }, // Alice's bounding box
+    { left: 1214, right: 1241, top: 481, bottom: 519 }, // Tinbird's bounding box
+    { left: 1352, right: 1370, top: 578, bottom: 604 }, // Frank's bounding box
   ];
   return (
     <GameboardMain

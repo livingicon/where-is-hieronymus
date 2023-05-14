@@ -47,7 +47,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Painting = styled.img`
-  width: 1000px;
+  width: 1700px;
   margin-top: 15px; 
 `;
 

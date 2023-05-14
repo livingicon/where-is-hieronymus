@@ -10,10 +10,11 @@ import Claws from "../../../images/JudgeClaws.png";
 const GameboardThree: React.FC = () => {
   const characters: Array<[string, string]> = [["Felicia", Felicia], ["Hatter", Hatter], ["Claws", Claws]];
   const characterBoxes = [
-    { left: 634, right: 654, top: 337, bottom: 354 }, // Felicia's bounding box
-    { left: 907, right: 930, top: 516, bottom: 541 }, // Hatter's bounding box
-    { left: 246, right: 275, top: 566, bottom: 589 }, // Claw's bounding box
+    { left: 1077, right: 1113, top: 573, bottom: 601 }, // Felicia's bounding box
+    { left: 1540, right: 1581, top: 878, bottom: 921 }, // Hatter's bounding box
+    { left: 419, right: 468, top: 963, bottom: 1003 }, // Claw's bounding box
   ];
+  
   return (
     <GameboardMain
       gameBoard={3}
